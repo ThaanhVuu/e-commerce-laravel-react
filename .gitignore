@@ -1,0 +1,44 @@
+# ======================
+# Laravel
+# ======================
+/vendor
+/node_modules
+/public/storage
+/storage/*.key
+.env
+Homestead.yaml
+Homestead.json
+.phpunit.result.cache
+/.idea
+/.vscode
+/.phpstorm.meta.php
+/.env.testing
+
+# Laravel Mix / npm
+/public/hot
+/public/css/app.css
+/public/js/app.js
+/public/mix-manifest.json
+
+# Cache & Logs
+/storage/*.log
+/storage/framework/cache/*
+/storage/framework/sessions/*
+/storage/framework/views/*
+/storage/framework/testing/*
+
+# ======================
+# ReactJS
+# ======================
+/frontend/node_modules
+/frontend/build
+/frontend/.env
+/frontend/.cache
+/frontend/.eslintcache
+/frontend/.parcel-cache
+
+# ======================
+# System files
+# ======================
+.DS_Store
+Thumbs.db
