@@ -1,44 +1,29 @@
-# ======================
 # Laravel
-# ======================
 /vendor
 /node_modules
+/public/hot
 /public/storage
 /storage/*.key
-.env
-Homestead.yaml
-Homestead.json
-.phpunit.result.cache
 /.idea
 /.vscode
-/.phpstorm.meta.php
-/.env.testing
+/.phpunit.result.cache
+/.env
+/.env.backup
+Homestead.yaml
+Homestead.json
+.env.local
+.env.*.local
 
 # Laravel Mix / npm
-/public/hot
-/public/css/app.css
-/public/js/app.js
-/public/mix-manifest.json
+npm-debug.log
+yarn-error.log
 
-# Cache & Logs
-/storage/*.log
-/storage/framework/cache/*
-/storage/framework/sessions/*
-/storage/framework/views/*
-/storage/framework/testing/*
-
-# ======================
-# ReactJS
-# ======================
-/frontend/node_modules
+# React build
+/build
 /frontend/build
-/frontend/.env
-/frontend/.cache
-/frontend/.eslintcache
-/frontend/.parcel-cache
 
-# ======================
-# System files
-# ======================
+# macOS
 .DS_Store
+
+# Windows
 Thumbs.db
