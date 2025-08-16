@@ -38,7 +38,7 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $id): JsonResponse
     {
         //
         $user = User::find($id);
@@ -51,7 +51,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $id): JsonResponse
     {
         //
         $user = User::find($id);
@@ -73,7 +73,7 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id): JsonResponse
     {
         //
         $user = User::find($id);
@@ -83,5 +83,15 @@ class UserController extends Controller
 
         $user->delete();
         return response()->json(['message' => 'User deleted successfully']);
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     * auth_user là thông tin user được lấy ra từ token, nguồn từ middleWare
+     */
+    public function me(Request $request): JsonResponse
+    {
+        return response()->json($request->auth_user);
     }
 }
