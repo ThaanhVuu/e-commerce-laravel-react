@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { AuthService } from "../../services/AuthApi";
 import { useNavigate } from "react-router-dom";
-import LoginLayout from "../../components/LoginLayout/LoginLayout";
+import LoginLayout from "../../layouts/LoginLayout/LoginLayout";
 
 export default function SignUp() {
     const [loading, setLoading] = useState(false);
@@ -37,7 +37,7 @@ export default function SignUp() {
         <LoginLayout
             title="Sign Up"
             handleOnSubmit={handleRegister}
-            linkHref="/"
+            linkHref="/signin"
             submitText="Sign up"
             label="Sign in"
             flag={true}

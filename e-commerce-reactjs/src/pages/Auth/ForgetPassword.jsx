@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import LoginLayout from "../../components/LoginLayout/LoginLayout";
+import LoginLayout from "../../layouts/LoginLayout/LoginLayout";
 import {useNavigate} from "react-router-dom";
 import {AuthService} from "../../services/AuthApi";
 
@@ -34,10 +34,10 @@ export default function ForgetPassword() {
             linkHref={`/signup`}
             submitText={`Password Recovery`}
             label={`Sign up`}
-            flag={false}
-            linkHref2={'/'}
+            linkHref2={'/signin'}
             label2={'Sign In'}
             error={error}
+            placeholder={'New Password'}
             loading={loading}
         />
     );

@@ -1,36 +1,32 @@
-import React, {useEffect, useState} from "react";
+import React, { useState, useContext } from "react";
 import { AuthService } from "../../services/AuthApi";
-import LoginLayout from "../../components/LoginLayout/LoginLayout";
-import {useNavigate} from "react-router-dom";
+import LoginLayout from "../../layouts/LoginLayout/LoginLayout";
+import { useNavigate } from "react-router-dom";
+import CheckCookieSignin from "../../utils/CheckCookieSignin";
+import { AuthContext } from "../../context/AuthContext";
 
 export default function SignIn() {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
+    const { setProfile } = useContext(AuthContext);  // dùng context
 
-    useEffect(() => {
-        (async () => {
-            try {
-                const user = await AuthService.myInfo();
-                if(user){
-                    navigate('/admin/dashboard');
-                }
-            }catch (err){
-                console.log('Error while check cookie sign in: ', (err.response) ? err.response.data : err);
-            }
-        })();
-    }, [navigate]);
+    CheckCookieSignin();
 
-    // async function xử lý submit
     async function handleSignIn(user) {
         setLoading(true);
         setError("");
 
         try {
             await AuthService.signIn(user.username, user.password);
-            navigate("/admin/dashboard");
+
+            const response = await AuthService.myInfo();
+            setProfile(response); // lưu toàn cục
+
+            if (response.role === "ADMIN") navigate("/admin/dashboard");
+            else navigate("/");
         } catch (err) {
-            setError(err.error);
+            setError(err.error || "Đăng nhập thất bại");
         } finally {
             setLoading(false);
         }
@@ -46,8 +42,8 @@ export default function SignIn() {
             flag={true}
             linkHref2="/forgetpassword"
             label2="Forget Password"
-            error={error}       // truyền lỗi cho LoginLayout hiển thị
-            loading={loading}   // truyền loading nếu muốn hiển thị spinner
+            error={error}
+            loading={loading}
         />
     );
 }

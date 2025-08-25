@@ -2,7 +2,7 @@ import axios from "axios";
 
 // Tạo instance Axios với baseURL và cookie support
 const api = axios.create({
-    baseURL: "http://localhost:8000/api",
+    baseURL: "http://localhost:8000/api/v1.0",
     headers: { "Content-Type": "application/json" },
     withCredentials: true, // gửi cookie tự động
 });
@@ -22,7 +22,7 @@ export const AuthService = {
     // Register
     register: async (username, password) => {
         try {
-            const response = await api.post("/register", { username, password });
+            const response = await api.post("/signup", { username, password });
             return response.data;
         } catch (error) {
             throw error.response ? error.response.data : error;

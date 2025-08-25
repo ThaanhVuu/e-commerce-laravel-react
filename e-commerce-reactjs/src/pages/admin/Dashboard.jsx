@@ -1,23 +1,13 @@
-import {useEffect} from "react";
-import {AuthService} from "../../services/AuthApi";
+import {useContext, useEffect} from "react";
+import {AuthContext} from "../../context/AuthContext";
 
 export default function Dashboard() {
-    useEffect(() => {
-        const fetchUser = async () => {
-            try {
-                const res = await AuthService.myInfo();
-                console.log(res);
-            } catch (err) {
-                // log lỗi chi tiết
-                console.error("Error fetching user info:", err.response ? err.response.data : err);
-            }
-        };
-
-        fetchUser();
-    }, []); // chỉ chạy 1 lần khi component mount
-
+    const { profile } = useContext(AuthContext);
+    
     return(
-        <h1>Day la dashboard</h1>
-
+        <>
+            <h1>Admin Panel</h1>
+            {profile && <p>Xin chào {profile.username}</p>}
+        </>
     )
 }
