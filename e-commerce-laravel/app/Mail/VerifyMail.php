@@ -13,6 +13,9 @@ class VerifyMail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    /**
+     * JWT token used to verify the account.
+     */
     public string $token;
 
     /**
@@ -25,7 +28,9 @@ class VerifyMail extends Mailable
     }
 
     /**
-     * Get the message envelope.
+     * Get the message envelope (subject, etc.).
+     *
+     * @return Envelope
      */
     public function envelope(): Envelope
     {
@@ -35,7 +40,9 @@ class VerifyMail extends Mailable
     }
 
     /**
-     * Get the message content definition.
+     * Get the message content definition and view data.
+     *
+     * @return Content
      */
     public function content(): Content
     {

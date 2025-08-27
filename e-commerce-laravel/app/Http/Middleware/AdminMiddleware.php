@@ -9,11 +9,11 @@ use Symfony\Component\HttpFoundation\Response;
 class AdminMiddleware
 {
     /**
-     * Handle an incoming request.
+     * Authorize access for ADMIN role only based on JWT payload.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \Closure $next
-     * @param mixed ...$roles
+     * @param Request $request Current request with `jwt_user` injected.
+     * @param Closure $next Next middleware.
+     * @return Response JSON error or next middleware response.
      */
     public function handle(Request $request, Closure $next): Response
     {

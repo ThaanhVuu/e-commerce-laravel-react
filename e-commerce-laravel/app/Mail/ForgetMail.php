@@ -13,6 +13,9 @@ class ForgetMail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    /**
+     * JWT token used to reset the password.
+     */
     protected string $token;
     /**
      * Create a new message instance.
@@ -24,7 +27,9 @@ class ForgetMail extends Mailable
     }
 
     /**
-     * Get the message envelope.
+     * Get the message envelope (subject, etc.).
+     *
+     * @return Envelope
      */
     public function envelope(): Envelope
     {
@@ -34,7 +39,9 @@ class ForgetMail extends Mailable
     }
 
     /**
-     * Get the message content definition.
+     * Get the message content definition and view data.
+     *
+     * @return Content
      */
     public function content(): Content
     {

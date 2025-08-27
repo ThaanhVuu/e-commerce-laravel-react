@@ -12,11 +12,20 @@ use Symfony\Component\HttpFoundation\Response;
 
 class JwtMiddleware
 {
+    /**
+     * Model for blacklisted tokens storage.
+     */
     protected BlackToken $blackToken;
+    /**
+     * Service to decode and validate JWT tokens.
+     */
     protected AuthService $authService;
 
     /**
-     * @param BlackToken $blackToken
+     * Inject dependencies for token validation and blacklist checks.
+     *
+     * @param BlackToken $blackToken Eloquent model instance.
+     * @param AuthService $authService Auth service for JWT operations.
      */
     public function __construct(BlackToken $blackToken, AuthService $authService)
     {
@@ -26,9 +35,11 @@ class JwtMiddleware
 
 
     /**
-     * Handle an incoming request.
+     * Handle an incoming request: validate JWT from cookie and attach payload.
      *
-     * @param \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response) $next
+     * @param Request $request Current HTTP request.
+     * @param Closure $next Next middleware.
+     * @return Response JSON error or next middleware response.
      */
     public function handle(Request $request, Closure $next): Response
     {

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\BlackToken;
 use App\Models\User;
 use App\Services\AuthService;
-use Carbon\Carbon;
 use Exception;
 use Hash;
 use Illuminate\Http\JsonResponse;
@@ -43,7 +42,7 @@ class AuthController extends Controller
 
         return response()->json([
             'message' => 'Sign in successful',
-        ])->cookie('access_token', $token, 60 * 24, '/', null, false, true, false, 'Lax');
+        ])->cookie('access_token', $token, (int) env('JWT_EXPIRY_TIME') / 60, '/', null, false, true, false, 'Lax');
     }
 
     /**
@@ -66,10 +65,7 @@ class AuthController extends Controller
 
         $payload = $this->authService->decodeToken($token);
 
-        BlackToken::create([
-            'token' => $token,
-            'expired_at' => Carbon::createFromTimestamp($payload['exp'])
-        ]);
+        $this->authService->blacklistToken($token, $payload);
 
         return response()->json(['message' => 'Sign out successful'])
             ->cookie('access_token', '', -1, '/', null, false, true, false, 'Lax');
@@ -117,13 +113,14 @@ class AuthController extends Controller
             $payload = $this->authService->decodeToken($token);
 
             $payload = $this->authService->handlePayload($payload);
-//            dd($payload); // 👀 Xem thử payload có gì
 
             $user = User::create([
                 'username' => $payload['username'],
                 'password' => $payload['password'], //pass đã đợc hash sẵn trong token
                 'role' => $payload['role'] ?? 'user', // fallback role
             ]);
+
+            $this->authService->blacklistToken($token, $payload);
 
             return response()->json($user, 201);
         } catch (Exception $exception) {
@@ -140,7 +137,7 @@ class AuthController extends Controller
      * @param Request $request Contains username and new password.
      * @return JsonResponse Message indicating email has been sent.
      */
-    public function forgetPassword(Request $request)
+    public function forgetPassword(Request $request): JsonResponse
     {
         $credentials = $this->authService->validateUsernamePassword($request);
 
@@ -164,17 +161,14 @@ class AuthController extends Controller
      * @param string $token JWT token carrying username and hashed password.
      * @return JsonResponse Operation result message.
      */
-    public function resetPassword(string $token)
+    public function resetPassword(string $token): JsonResponse
     {
         $payload = $this->authService->decodeToken($token);
 
         if (BlackToken::where('token', $token)->exists())
             return response()->json(['error' => 'Token revoked'], 401);
 
-        BlackToken::create([
-            'token' => $token,
-            'expired_at' => Carbon::createFromTimestamp($payload['exp'])
-        ]);
+        $this->authService->blacklistToken($token, $payload);
 
         $user = User::where('username', $payload['username'])->first();
 
