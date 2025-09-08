@@ -1,0 +1,20 @@
+<!--?xml version="1.0" encoding="UTF-8"?-->
+<svg role="img" aria-label="Maverick" viewBox="0 0 800 180" width="800" height="180" xmlns="http://www.w3.org/2000/svg">
+  <title>Maverick</title>
+  <style>
+    .mv-word {
+      font-family: 'Poppins','Montserrat','Segoe UI',Arial,sans-serif;
+      font-weight: 800;
+      font-size: 110px;
+      letter-spacing: 2px;
+    }
+  </style>
+
+  <!-- Chữ "MA" + "ERICK" đen, riêng "V" đỏ -->
+  <text class="mv-word" x="8" y="115" fill="#111111">
+    MA<tspan fill="#D62828">V</tspan>ERICK
+  </text>
+
+  <!-- Swoosh đỏ phía dưới -->
+  <path d="M40,140 C210,165 445,168 690,142" fill="none" stroke="#D62828" stroke-width="14" stroke-linecap="round" opacity="0.9"></path>
+</svg>

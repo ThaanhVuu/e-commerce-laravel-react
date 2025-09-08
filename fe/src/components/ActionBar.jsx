@@ -66,9 +66,9 @@ export function ActionBar({onDelete, onSearch, onFilter, filterSelectionSetting}
                     setFilter(e.target.value);
                 }}
             >
-                <option value="">ALL</option>
-                {filterSelectionSetting.map((field) => (
-                    <option value={field.value}>{field.label}</option>
+                <option key={1} value="">ALL</option>
+                {filterSelectionSetting.map((field, idx) => (
+                    <option key={idx} value={field.value}>{field.label}</option>
                 ))}
             </select>
         </div>

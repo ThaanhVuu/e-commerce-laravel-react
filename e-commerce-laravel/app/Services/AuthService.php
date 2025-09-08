@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
-use App\Models\BlackToken;
 use App\Models\User;
+use App\Models\BlackToken;
 use Carbon\Carbon;
 use Exception;
 use Firebase\JWT\JWT;
@@ -59,10 +59,10 @@ class AuthService
             'password' => $user->password,
             'role' => $user->role,
             'iat' => time(),
-            'exp' => time() + (int) env('JWT_EXPIRY_TIME')
+            'exp' => time() + (int) config('jwt.expiry_time')
         ];
 
-        return JWT::encode($payload, env('JWT_SECRET'), 'HS256');
+        return JWT::encode($payload, config('jwt.secret'), 'HS256');
     }
 
     /**
@@ -73,7 +73,7 @@ class AuthService
      */
     public function decodeToken(string $token): array
     {
-        return (array)JWT::decode($token, new Key(env('JWT_SECRET'), 'HS256')); //payload
+        return (array)JWT::decode($token, new Key(config('jwt.secret'), 'HS256')); //payload
     }
 
     /**

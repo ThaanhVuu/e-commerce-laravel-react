@@ -19,9 +19,14 @@ export function SignIn() {
 
             const response = await AuthService.myInfo();
             setProfile(response); // lưu toàn cục
-
-            if (response.role === "ADMIN") navigate("/admin");
-            else navigate("/");
+            console.log(response)
+            if (response.role === "ADMIN") {
+                navigate("/admin");
+            } else if (response.role === "MANAGER") {
+                navigate("/manager");
+            } else {
+                navigate("/");
+            }
         } catch (err) {
             setError(err.error || "Lỗi kết nối tới server");
         } finally {

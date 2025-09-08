@@ -23,6 +23,12 @@ class UserController extends Controller
         return response()->json($users);
     }
 
+    public function usePaging(int $limit): JsonResponse
+    {
+        $user = User::paginate($limit);
+        return response()->json($user);
+    }
+
     /**
      * Create a new user with validated fields.
      *

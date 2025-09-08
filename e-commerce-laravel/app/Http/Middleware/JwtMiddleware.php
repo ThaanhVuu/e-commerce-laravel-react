@@ -13,53 +13,45 @@ use Symfony\Component\HttpFoundation\Response;
 class JwtMiddleware
 {
     /**
-     * Model for blacklisted tokens storage.
-     */
-    protected BlackToken $blackToken;
-    /**
      * Service to decode and validate JWT tokens.
      */
     protected AuthService $authService;
 
-    /**
-     * Inject dependencies for token validation and blacklist checks.
-     *
-     * @param BlackToken $blackToken Eloquent model instance.
-     * @param AuthService $authService Auth service for JWT operations.
-     */
-    public function __construct(BlackToken $blackToken, AuthService $authService)
+    public function __construct(AuthService $authService)
     {
-        $this->blackToken = $blackToken;
         $this->authService = $authService;
     }
-
 
     /**
      * Handle an incoming request: validate JWT from cookie and attach payload.
      *
      * @param Request $request Current HTTP request.
      * @param Closure $next Next middleware.
-     * @return Response JSON error or next middleware response.
+     * @return Response
      */
     public function handle(Request $request, Closure $next): Response
     {
         $token = $request->cookie('access_token');
 
-        if (!$token) return response()->json(['error' => 'Unauthenticated'], 401);
+        if (!$token) {
+            return response()->json(['error' => 'Unauthenticated'], 401);
+        }
 
-        if ($this->blackToken->where('token', $token)->exists())
+        if (BlackToken::where('token', $token)->exists()) {
             return response()->json(['error' => 'Token revoked'], 401);
+        }
 
         try {
             $payload = $this->authService->decodeToken($token);
 
-            if (isset($payload['exp']) && time() > $payload['exp'])
+            if (isset($payload['exp']) && time() > $payload['exp']) {
                 return response()->json(['error' => 'Token expired'], 401);
+            }
 
             $request->merge(['jwt_user' => $payload]);
-        } catch (ExpiredException $e) {
+        } catch (ExpiredException) {
             return response()->json(['error' => 'Token expired'], 401);
-        } catch (Exception $e) {
+        } catch (Exception) {
             return response()->json(['error' => 'Invalid token'], 401);
         }
 

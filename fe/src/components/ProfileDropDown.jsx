@@ -2,9 +2,14 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import avatar from "../assets/avata.jpg";
 import {AuthService} from "../services/AuthService";
 import {useNavigate} from "react-router-dom";
+import {useEffect} from "react";
 
 export function ProfileDropDown({profile}){
     const navigate = useNavigate();
+
+    useEffect(() => {
+        console.log(profile)
+    }, []);
 
     async function handleLogout() {
         try {
@@ -18,14 +23,16 @@ export function ProfileDropDown({profile}){
 
     return (
         <Dropdown align="end">
-            <Dropdown.Toggle variant="light" id="dropdown-user">
+            <Dropdown.Toggle variant="danger rounded-pill d-flex align-items-center p-2"
+                             id="dropdown-user"
+            >
                 <img
                     src={avatar}
                     alt="avatar"
                     className="rounded-circle me-2"
                     style={{ width: "25px", height: "25px", objectFit: "cover" }}
                 />
-                {profile.name}
+                {profile.username}
             </Dropdown.Toggle>
 
             <Dropdown.Menu>

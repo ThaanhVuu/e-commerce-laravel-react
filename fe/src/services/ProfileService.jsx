@@ -26,4 +26,22 @@ export const ProfileService = {
             throw error.response ? error.response.data : error;
         }
     },
+
+    getById: async (id) => {
+        try {
+            const res = await api.get(`/profile/${id}`);
+            return res.data;
+        } catch (error) {
+            throw error.response ? error.response.data : error;
+        }
+    },
+
+    update: async (fullName, phone, address, gender, dob, id) => {
+        try {
+            const res = await api.put(`/profile/${id}`, {fullName, phone, address, gender, dob});
+            return res.data;
+        } catch (error) {
+            throw error.response ? error.response.data : error;
+        }
+    }
 }

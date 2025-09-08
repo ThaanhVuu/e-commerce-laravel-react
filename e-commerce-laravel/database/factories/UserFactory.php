@@ -16,8 +16,8 @@ class UserFactory extends Factory
         return [
             'id' => (string) Str::uuid(),
             'username' => $this->faker->unique()->userName(),
-            'password' => Hash::make('password'),
-            'role' => $this->faker->randomElement(['USER','MANAGER','SALER']),
+            'password' => Hash::make('password'), // mật khẩu mặc định
+            'role' => $this->faker->randomElement(['USER', 'MANAGER', 'SALER']),
         ];
     }
 }

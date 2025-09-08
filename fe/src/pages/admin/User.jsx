@@ -166,7 +166,7 @@ export function User() {
         <div className="d-flex flex-column gap-3">
             {/* Header */}
             <div className="d-flex justify-content-between">
-                <h3 className="fw-bold">User list</h3>
+                <h3 className="fw-bold h-3 m-0">User list</h3>
                 <button
                     data-bs-toggle="modal"
                     data-bs-target="#addModal"
@@ -189,17 +189,14 @@ export function User() {
                     filterSelectionSetting={filterSelectionSettingActionBar}
                 />
 
-                <hr />
-
                 {/* User Table */}
                 <CustomTable
                     list={filteredUsers}
                     columns={headerTableSetting}
                     onSelectionChange={setSelectedUserIds}
                     handleEditBtn={handleEditUser}
+                    stickyFirstCol={true}
                 />
-
-                <hr />
 
                 {/* Paging Section */}
                 <CustomPaging

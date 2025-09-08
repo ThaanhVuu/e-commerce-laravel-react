@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Maverick Logo → PNG</title>
+    <!-- (Tuỳ chọn) Tải font Poppins 800 để PNG hiển thị đúng -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 24px; }
+        .preview { background:#111; display:inline-block; padding:16px; border-radius:12px; }
+        .actions { margin-top:12px; display:flex; gap:8px; flex-wrap:wrap; }
+        button { padding:10px 14px; border-radius:8px; border:1px solid #ccc; cursor:pointer; }
+        input[type="number"]{ width:72px; padding:8px; border-radius:8px; border:1px solid #ccc; }
+        label{ display:inline-flex; align-items:center; gap:6px; }
+    </style>
+</head>
+<body>
+<h2>Maverick Logo → PNG (HTML thuần)</h2>
+
+<div class="preview" id="logo-wrap">
+    <!-- SVG inline (chữ trắng, swoosh đỏ) -->
+    <svg role="img" aria-label="Maverick"
+         viewBox="0 0 800 180"
+         width="800" height="180"
+         xmlns="http://www.w3.org/2000/svg">
+        <title>Maverick</title>
+        <style>
+            .mv-word {
+                font-family: 'Poppins','Montserrat','Segoe UI',Arial,sans-serif;
+                font-weight: 800;
+                font-size: 110px;
+                letter-spacing: 2px;
+            }
+        </style>
+
+        <!-- Toàn bộ chữ trắng, chữ V đỏ -->
+        <text class="mv-word" x="8" y="115" fill="#000000">
+            MA<tspan fill="#D62828">V</tspan>ERICK
+        </text>
+
+        <!-- Swoosh đỏ -->
+        <path d="M40,140 C210,165 445,168 690,142"
+              fill="none"
+              stroke="#D62828"
+              stroke-width="14"
+              stroke-linecap="round"
+              opacity="0.9"/>
+    </svg>
+</div>
+
+<div class="actions">
+    <label>Scale:
+        <input id="scale" type="number" min="1" max="10" step="1" value="4">
+    </label>
+    <button id="btnTransparent">Tải PNG (nền trong suốt)</button>
+    <button id="btnDark">Tải PNG (nền #111)</button>
+    <button id="btnWhite">Tải PNG (nền trắng)</button>
+</div>
+
+<script>
+    const wrap = document.getElementById('logo-wrap');
+    const scaleInput = document.getElementById('scale');
+
+    async function svgToPng(bg = null, filename = 'maverick-logo.png') {
+        const svg = wrap.querySelector('svg');
+        const cloned = svg.cloneNode(true);
+
+        // Lấy kích thước gốc từ viewBox
+        const vb = svg.viewBox.baseVal;
+        const w = vb && vb.width ? vb.width : svg.width.baseVal.value;
+        const h = vb && vb.height ? vb.height : svg.height.baseVal.value;
+
+        const scale = Math.max(1, parseInt(scaleInput.value || '4', 10));
+        cloned.setAttribute('width', w * scale);
+        cloned.setAttribute('height', h * scale);
+
+        if (!cloned.getAttribute('xmlns')) cloned.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+        if (!cloned.getAttribute('xmlns:xlink')) cloned.setAttribute('xmlns:xlink', 'http://www.w3.org/1999/xlink');
+
+        // Chờ font web tải xong (nếu có)
+        if (document.fonts && document.fonts.ready) {
+            try { await document.fonts.ready; } catch (_) {}
+        }
+
+        const svgStr = new XMLSerializer().serializeToString(cloned);
+        const blob = new Blob([svgStr], { type: 'image/svg+xml;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+
+        const img = new Image();
+        img.onload = () => {
+            const canvas = document.createElement('canvas');
+            canvas.width = w * scale;
+            canvas.height = h * scale;
+            const ctx = canvas.getContext('2d');
+
+            // Nền (null = trong suốt)
+            if (bg) {
+                ctx.fillStyle = bg;
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+            }
+
+            ctx.drawImage(img, 0, 0);
+            URL.revokeObjectURL(url);
+
+            canvas.toBlob((pngBlob) => {
+                const a = document.createElement('a');
+                a.href = URL.createObjectURL(pngBlob);
+                a.download = filename;
+                a.click();
+            }, 'image/png');
+        };
+        img.src = url;
+    }
+
+    document.getElementById('btnTransparent').addEventListener('click', () => svgToPng(null, 'maverick-logo.png'));
+    document.getElementById('btnDark').addEventListener('click', () => svgToPng('#111111', 'maverick-logo-darkbg.png'));
+    document.getElementById('btnWhite').addEventListener('click', () => svgToPng('#FFFFFF', 'maverick-logo-whitebg.png'));
+</script>
+</body>
+</html>

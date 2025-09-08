@@ -4,7 +4,6 @@ import {Sidebar} from "../components/Sidebar";
 import {LuLayoutDashboard} from "react-icons/lu";
 import {FaRegUser} from "react-icons/fa";
 
-//chứa các trang của admin
 export function AdminLayout(){
     const menuOption = [
         { label: "Dashboard", path: "/admin/dashboard", icon: LuLayoutDashboard },
@@ -12,15 +11,23 @@ export function AdminLayout(){
         { label: "Profile", path: "/admin/profile", icon: FaRegUser },
     ];
 
-    return(
+    return (
         <>
             <AdminHeader/>
-            <main className={'d-flex'}>
-                <Sidebar menuOption={menuOption}/>
-                <div className="flex-grow-1 p-3" style={{ background: '#f3f3f7' }}>
+            <main className="d-flex">
+                {/* Sidebar: không cho co lại */}
+                <div className="flex-shrink-0" style={{width: "15%"}}>
+                    <Sidebar menuOption={menuOption}/>
+                </div>
+
+                {/* Content: cho co lại + chặn tràn ngang */}
+                <div
+                    className="p-3 flex-grow-1"
+                    style={{ background: "#f3f3f7", minWidth: 0, overflowX: "hidden" }}
+                >
                     <Outlet/>
                 </div>
             </main>
         </>
-    )
+    );
 }

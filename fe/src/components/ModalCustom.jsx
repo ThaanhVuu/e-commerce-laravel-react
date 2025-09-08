@@ -54,9 +54,9 @@
  * <button className="btn btn-primary" data-bs-toggle="modal*
 
  /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 
-export function ModalCustom({ id, title, fields, onSubmit, editData }) {
+export function ModalCustom({id, title, fields, onSubmit, editData}) {
     // Khởi tạo form rỗng
     const createEmptyForm = () => {
         const obj = {};
@@ -80,8 +80,8 @@ export function ModalCustom({ id, title, fields, onSubmit, editData }) {
 
     // Cập nhật khi nhập input/select
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        setForm((prev) => ({ ...prev, [name]: value }));
+        const {name, value} = e.target;
+        setForm((prev) => ({...prev, [name]: value}));
     };
 
     // Submit form
@@ -129,6 +129,20 @@ export function ModalCustom({ id, title, fields, onSubmit, editData }) {
                                             </option>
                                         ))}
                                     </select>
+                                ) : field.type === "radio" ? (
+                                    field.options.map((opt, i) => (
+                                        <div key={i} className="form-check form-check-inline">
+                                            <input
+                                                className="form-check-input"
+                                                type="radio"
+                                                name={field.name}
+                                                value={opt.value}
+                                                checked={form[field.name] === opt.value}
+                                                onChange={handleChange}
+                                            />
+                                            <label className="form-check-label">{opt.label}</label>
+                                        </div>
+                                    ))
                                 ) : (
                                     <input
                                         className="form-control"

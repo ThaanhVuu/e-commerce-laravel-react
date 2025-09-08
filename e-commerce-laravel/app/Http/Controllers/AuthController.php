@@ -42,7 +42,7 @@ class AuthController extends Controller
 
         return response()->json([
             'message' => 'Sign in successful',
-        ])->cookie('access_token', $token, (int) env('JWT_EXPIRY_TIME') / 60, '/', null, false, true, false, 'Lax');
+        ])->cookie('access_token', $token, (int) config('jwt.expiry_time') / 60, '/', null, false, true, false, 'Lax');
     }
 
     /**

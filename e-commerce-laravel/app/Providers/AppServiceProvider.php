@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Models\User;
+use Database\Factories\User;
 use Artisan;
 use Database\Seeders\UserSeeder;
 use Illuminate\Support\Facades\Hash;
@@ -24,11 +24,11 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //
-        if(User::where('username','admin')->exists()){
-            Artisan::call('db:seed', [
-                '--class' => UserSeeder::class,
-                '--force' => true
-            ]);
-        }
+//        if(User::where('username','admin')->exists()){
+//            Artisan::call('db:seed', [
+//                '--class' => UserSeeder::class,
+//                '--force' => true
+//            ]);
+//        }
     }
 }
