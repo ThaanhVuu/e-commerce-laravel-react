@@ -27,7 +27,7 @@ export function Category() {
 
     return (
         <div className="d-flex flex-column gap-3">
-            {/* Header */}
+            {/* HomeHeader */}
             <div className="d-flex justify-content-between">
                 <h3 className="fw-bold">Category list</h3>
                 <button

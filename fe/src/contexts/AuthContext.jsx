@@ -7,23 +7,26 @@ export const AuthContext = createContext(null);
 export function AuthProvider({children}) {
     const [profile, setProfile] = useState(null);
     const [loading, setLoading] = useState(true);
-    const navigate = useNavigate();
 
     useEffect(() => {
+        const publicPaths = ["/", "/signin", "/signup", "/forgetpassword"];
+        if (publicPaths.includes(window.location.pathname)) {
+            setLoading(false);
+            return;
+        }
+
         (async () => {
             try {
                 const response = await AuthService.myInfo();
                 setProfile(response);
             } catch (err) {
-                alert("Token is expired or missing");
                 setProfile(null);
-                navigate("/signin", { replace: true }); // ✅ redirect
             } finally {
                 setLoading(false);
             }
         })();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
 
     if (loading) {
         return (

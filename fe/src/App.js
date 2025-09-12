@@ -11,14 +11,16 @@ import {Profile} from "./pages/admin/Profile";
 import {ManagerDashboard} from "./pages/manager/ManagerDashboard";
 import {Category} from "./pages/manager/Category";
 import {ManagerLayout} from "./layouts/ManagerLayout";
+import {HomeLayout} from "./layouts/HomeLayout";
 
 function App() {
     return (
         <Routes>
-            {/* auth */}
+            {/* public */}
             <Route path="/signin" element={<SignIn/>}/>
             <Route path="/signup" element={<SignUp/>}/>
             <Route path="/forgetpassword" element={<ForgetPassword/>}/>
+            <Route path={"/"} element={<HomeLayout/>}/>
 
             {/* Admin */}
             <Route element={<ProtectedRoute roles={["ADMIN"]}/>}>

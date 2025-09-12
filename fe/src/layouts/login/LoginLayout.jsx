@@ -22,7 +22,7 @@ export function LoginLayout(
     }
 
     return (
-        <section>
+        <section id={"login-layout"}>
             <div className="leaves">
                 <div className="set">
                     <div><img src={leaf1} alt="leaf 1"/></div>

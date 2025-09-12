@@ -5,92 +5,72 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8e1c7035-a268-450f-b736-12ee2043d30f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Models/OrderDetail.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/jwt.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/factories/BlackTokenFactory.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/factories/CategoryFactory.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/factories/ProductFactory.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../fe/src/assets/MaverickLogo.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../fe/src/layouts/ManagerLayout.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../fe/src/pages/manager/Category.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../fe/src/pages/manager/ManagerDashboard.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../fe/src/services/CategoryService.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../fe/src/utils/logo.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/_ide_helper.php" beforeDir="false" afterPath="$PROJECT_DIR$/_ide_helper.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AuthController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/JwtMiddleware.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/JwtMiddleware.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/BlackToken.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/BlackToken.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/AuthService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/AuthService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/auth.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/UserFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/UserFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/UserSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/UserSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs/.idea/e-commerce-reactjs.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs/public/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs/public/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs/public/logo192.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs/public/logo512.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs/public/manifest.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs/public/robots.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs/src/App.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs/src/App.test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs/src/assets/Logo.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs/src/assets/bg.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs/src/assets/girl.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs/src/assets/leaf_01.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs/src/assets/leaf_02.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs/src/assets/leaf_03.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs/src/assets/leaf_04.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs/src/assets/trees.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs/src/components/AddButton.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs/src/components/CustomModal.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs/src/components/CustomPaging.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs/src/components/CustomTable.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs/src/components/admin/AdminHeader.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs/src/context/AuthContext.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs/src/declarations.d.ts.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs/src/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs/src/layouts/AdminLayout/Admin.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs/src/layouts/LoginLayout/LoginLayout.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs/src/layouts/LoginLayout/LoginLayout.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs/src/logo.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs/src/pages/Auth/ForgetPassword.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs/src/pages/Auth/SignIn.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs/src/pages/Auth/SignUp.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs/src/pages/admin/Dashboard.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs/src/pages/admin/User.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs/src/pages/home/Home.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs/src/reportWebVitals.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs/src/services/AuthService.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs/src/services/UserService.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs/src/setupProxy.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs/src/setupTests.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs/src/utils/CheckCookieSignin.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs/src/utils/FormatDate.jsx" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fe/src/components/home/HomeHeader.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fe/src/layouts/HomeLayout.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fe/src/pages/home/Category.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fe/src/pages/home/Home.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fe/src/pages/home/Home.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs-2/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs-2/.idea/e-commerce-reactjs.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs-2/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs-2/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs-2/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs-2/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs-2/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs-2/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs-2/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs-2/public/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs-2/public/logo192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs-2/public/logo512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs-2/public/manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs-2/public/robots.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs-2/src/App.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs-2/src/App.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs-2/src/assets/Logo.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs-2/src/assets/bg.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs-2/src/assets/girl.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs-2/src/assets/leaf_01.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs-2/src/assets/leaf_02.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs-2/src/assets/leaf_03.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs-2/src/assets/leaf_04.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs-2/src/assets/trees.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs-2/src/components/AddButton.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs-2/src/components/CustomModal.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs-2/src/components/CustomPaging.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs-2/src/components/CustomTable.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs-2/src/components/admin/AdminHeader.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs-2/src/context/AuthContext.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs-2/src/declarations.d.ts.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs-2/src/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs-2/src/layouts/AdminLayout/Admin.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs-2/src/layouts/LoginLayout/LoginLayout.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs-2/src/layouts/LoginLayout/LoginLayout.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs-2/src/logo.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs-2/src/pages/Auth/ForgetPassword.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs-2/src/pages/Auth/SignIn.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs-2/src/pages/Auth/SignUp.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs-2/src/pages/admin/Dashboard.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs-2/src/pages/admin/User.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs-2/src/pages/home/Home.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs-2/src/reportWebVitals.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs-2/src/services/AuthService.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs-2/src/services/UserService.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs-2/src/setupProxy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs-2/src/setupTests.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs-2/src/utils/CheckCookieSignin.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../e-commerce-reactjs-2/src/utils/FormatDate.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fe/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fe/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../fe/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/src/components/ActionBar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/components/ActionBar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fe/src/assets/MaverickLogo.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/assets/MaverickLogo.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../fe/src/components/CustomTable.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/components/CustomTable.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../fe/src/components/ModalCustom.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/components/ModalCustom.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/src/components/ProfileDropDown.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/components/ProfileDropDown.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/src/components/Sidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/components/Sidebar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/src/components/admin/AdminHeader.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/components/admin/AdminHeader.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/src/layouts/AdminLayout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/layouts/AdminLayout.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fe/src/contexts/AuthContext.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/contexts/AuthContext.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fe/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../fe/src/pages/admin/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/pages/admin/Profile.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../fe/src/pages/admin/User.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/pages/admin/User.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/src/pages/auth/SignIn.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/pages/auth/SignIn.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/src/services/ProfileService.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/services/ProfileService.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fe/src/pages/manager/Category.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/pages/manager/Category.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -309,6 +289,8 @@
       <workItem from="1757084991468" duration="1259000" />
       <workItem from="1757154720753" duration="755000" />
       <workItem from="1757212787939" duration="2895000" />
+      <workItem from="1757511422073" duration="683000" />
+      <workItem from="1757553860177" duration="2568000" />
     </task>
     <servers />
   </component>

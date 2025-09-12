@@ -2,7 +2,7 @@
 export const MaverickLogo = ({
                                  width = 200,
                                  height = 48,
-                                 primary = "#FFFFFF",   // Đen
+                                 primary = "#000000",   // Đen
                                  accent = "#D62828",    // Đỏ
                              }) => (
     <svg

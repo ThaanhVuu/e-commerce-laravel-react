@@ -101,7 +101,7 @@ export function ModalCustom({id, title, fields, onSubmit, editData}) {
         >
             <div className="modal-dialog">
                 <div className="modal-content">
-                    {/* Header */}
+                    {/* HomeHeader */}
                     <div className="modal-header">
                         <h5 className="modal-title">{title}</h5>
                         <button

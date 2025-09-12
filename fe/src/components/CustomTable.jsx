@@ -53,7 +53,7 @@ export function CustomTable({
             >
                 <thead>
                 <tr>
-                    {/* Header checkbox */}
+                    {/* HomeHeader checkbox */}
                     <th
                         style={{
                             ...stickyTh,
