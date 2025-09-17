@@ -23,12 +23,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
-        if(User::where('username','admin')->exists()){
-            Artisan::call('db:seed', [
-                '--class' => UserSeeder::class,
-                '--force' => true
-            ]);
-        }
+        // //
+        // if(User::where('username','admin')->exists()){
+        //     Artisan::call('db:seed', [
+        //         '--class' => UserSeeder::class,
+        //         '--force' => true
+        //     ]);
+        // }
     }
 }
