@@ -11,11 +11,18 @@ import {AuthProvider} from "./contexts/AuthContext";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+import "@fontsource/lexend-deca";
+
+import './index.css';
+
+import "leaflet/dist/leaflet.css";
+import "./leafletFix";
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <BrowserRouter>
         <AuthProvider>
-            <App />
+            <App/>
         </AuthProvider>
     </BrowserRouter>
 );

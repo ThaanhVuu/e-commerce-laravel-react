@@ -1,32 +1,33 @@
-/* Khung & chặn scroll ngang */
-.home-slider {
-    width: 100%;
-    overflow: hidden;
-}
+/*#home {*/
+/*    overflow-x: hidden;      !* chặn cuộn ngang *!*/
+/*}*/
 
-/* Chiều cao cố định để ảnh phủ kín */
-.home-slider .slide {
-    height: 664px; /* đổi 60vh nếu muốn linh hoạt theo màn hình */
-}
-
-/* Ảnh fill khung, crop đẹp */
-.home-slider .slide img {
+.home-banner {
+    height: calc(100vh - 44px);
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
     display: block;
+    object-fit: fill;
 }
 
-/* Tô màu & phóng to mũi tên */
-.slick-prev:before,
-.slick-next:before {
-    font-size: 28px;
-    color: #d62828;
+/* Bảo đảm arrow nằm trong khung và nổi lên */
+.home-slider .custom-arrow {
+    cursor: pointer;
+    z-index: 999;
 }
-.slick-prev { left: 12px; z-index: 2; }
-.slick-next { right: 12px; z-index: 2; }
 
-/* Dots gọn gàng hơn */
-.slick-dots li button:before { font-size: 10px; opacity: .35; }
-.slick-dots li.slick-active button:before { opacity: 1; }
+.home-slider .slick-prev.custom-arrow {
+    left: 5px !important;
+}
+
+.home-slider .slick-next.custom-arrow {
+    right: 32px !important;
+}
+
+.home-slider .slick-prev:before,
+.home-slider .slick-next:before {
+    display: none !important;
+}
+
+#home{
+    scroll-margin-top: 44px;
+}

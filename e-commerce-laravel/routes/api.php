@@ -7,6 +7,7 @@ use App\Http\Controllers\OrderDetailController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VisitController;
 use App\Http\Middleware\JwtMiddleware;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\ManagerMiddleware;
@@ -22,6 +23,7 @@ Route::prefix('v1.0')->group(function () {
     Route::get('/verify/{token}', [AuthController::class, 'handleVerificationEmail']);
     Route::post('/forgetpassword', [AuthController::class, 'forgetPassword']);
     Route::get('/resetpassword/{token}', [AuthController::class, 'resetPassword']);
+    Route::post('/hit', [VisitController::class, 'hit']);
 
     /**
      * Admin

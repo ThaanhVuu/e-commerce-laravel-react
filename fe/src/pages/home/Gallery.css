@@ -1,0 +1,38 @@
+.slide-item img {
+    width: auto;
+    height: 600px; /* chiều cao tuỳ chỉnh */
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+/* slide trung tâm */
+.slick-center .slide-item img {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* slide bên cạnh */
+.slide-item img {
+    transform: scale(0.8);
+    opacity: 0.6;
+}
+
+.slick-prev {
+    z-index: 999;
+    left: 80px;   /* đẩy sang ngoài slider */
+}
+.slick-next {
+    z-index: 999;
+    right: 80px;
+}
+
+.slick-prev:before,
+.slick-next:before {
+    display: none;
+}
+
+#gallery{
+    background-color: #feffec;
+    scroll-margin-top: 44px;
+}

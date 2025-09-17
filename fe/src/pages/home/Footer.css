@@ -1,0 +1,17 @@
+#footer{
+    background-color: #2e404f;
+    padding: 30px 96px;
+    color: white;
+}
+
+#footer hr {
+    width: 100%;
+    border: none;                  /* xoá rule cũ */
+    border-top: 2px solid #ffffff; /* ép gạch trắng */
+    opacity: 0.7;                    /* xoá opacity mờ */
+}
+
+.footer-hover:hover{
+    cursor: pointer;
+}
+

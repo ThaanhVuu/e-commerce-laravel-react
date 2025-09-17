@@ -66,8 +66,9 @@ export function LoginLayout(
                     </div>
 
                     <div className="group">
-                        <a href={linkHref2}>{label2}</a>
-                        <a href={linkHref}>{label}</a>
+                        <a href={linkHref2} className={"text-decoration-none"}>{label2}</a>
+                        <a href={linkHref} className={"text-decoration-none"}>{label}</a>
+                        <a href={"/"} className={"text-decoration-none"}>Home</a>
                     </div>
                 </form>
             </div>
