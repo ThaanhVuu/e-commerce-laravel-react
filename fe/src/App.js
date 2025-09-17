@@ -12,7 +12,8 @@ import {ManagerDashboard} from "./pages/manager/ManagerDashboard";
 import {Category} from "./pages/manager/Category";
 import {ManagerLayout} from "./layouts/ManagerLayout";
 import {HomeLayout} from "./layouts/HomeLayout";
-
+import {Cart} from "./pages/home/Cart"; 
+import {OrderConfirm} from "./pages/home/OrderConfirm";
 function App() {
     return (
         <Routes>
@@ -21,6 +22,8 @@ function App() {
             <Route path="/signup" element={<SignUp/>}/>
             <Route path="/forgetpassword" element={<ForgetPassword/>}/>
             <Route path={"/"} element={<HomeLayout/>}/>
+            <Route path="/cart" element={<Cart/>} />
+            <Route path="/order-confirm" element={<OrderConfirm />} />
 
             {/* Admin */}
             <Route element={<ProtectedRoute roles={["ADMIN"]}/>}>

@@ -25,7 +25,7 @@ export function HomeHeader() {
                 <a href={"#gallery"} className="m-0 text-dark text-decoration-none" style={{fontSize: "14px"}}>Gallery</a>
                 <a href={"#footer"} className="m-0 text-dark text-decoration-none" style={{fontSize: "14px"}}>About us</a>
                 <a href={'#search'} className="m-0 text-dark text-decoration-none"><CiSearch size={18} /></a>
-                <a href={'#cart'} className="m-0 text-dark text-decoration-none"><IoBagOutline size={16}/></a>
+                <a href={"/cart"} className="m-0 text-dark text-decoration-none"><IoBagOutline size={16}/></a>
                 {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                 <a onClick={handleUserClick} className="m-0 text-dark text-decoration-none" style={{cursor: "pointer"}}><LuCircleUser size={16}/></a>
             </nav>
