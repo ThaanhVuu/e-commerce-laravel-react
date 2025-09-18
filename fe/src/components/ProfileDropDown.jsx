@@ -2,14 +2,9 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import avatar from "../assets/avata.jpg";
 import {AuthService} from "../services/AuthService";
 import {useNavigate} from "react-router-dom";
-import {useEffect} from "react";
 
 export function ProfileDropDown({profile}){
     const navigate = useNavigate();
-
-    useEffect(() => {
-        console.log(profile)
-    }, []);
 
     async function handleLogout() {
         try {

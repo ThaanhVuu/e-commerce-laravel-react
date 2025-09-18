@@ -12,7 +12,7 @@ export const CategoryService = {
     // Lấy danh sách category có phân trang
     getCategories: async (limit, page) => {
         try {
-            const res = await api.get(`/categories`);
+            const res = await api.get(`/categories/limit=100`);
             return res.data;
         } catch (error) {
             throw error.response ? error.response.data : error;
@@ -30,9 +30,9 @@ export const CategoryService = {
     },
 
     // Tạo mới category
-    create: async (name, description) => {
+    create: async (obj) => {
         try {
-            const res = await api.post(`/categories`, { name, description });
+            const res = await api.post(`/categories`, obj);
             return res.data;
         } catch (error) {
             throw error.response ? error.response.data : error;
@@ -40,9 +40,9 @@ export const CategoryService = {
     },
 
     // Cập nhật category
-    update: async (id, name, description) => {
+    update: async (id, obj) => {
         try {
-            const res = await api.put(`/categories/${id}`, { name, description });
+            const res = await api.put(`/categories/${id}`, obj);
             return res.data;
         } catch (error) {
             throw error.response ? error.response.data : error;

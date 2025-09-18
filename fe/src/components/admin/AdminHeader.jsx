@@ -12,7 +12,7 @@ export function AdminHeader() {
         <>
             <header className={'d-flex justify-content-between py-3 align-items-center px-4'} style={{height: "64px", backgroundColor: "#161617"}}>
                 {/*<Logo/>*/}
-                <MaverickLogo/>
+                <MaverickLogo primary={"#FFFFFF"}/>
                 <ProfileDropDown profile={profile}/>
             </header>
         </>

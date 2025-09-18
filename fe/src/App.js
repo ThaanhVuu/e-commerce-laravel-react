@@ -12,6 +12,8 @@ import {ManagerDashboard} from "./pages/manager/ManagerDashboard";
 import {Category} from "./pages/manager/Category";
 import {ManagerLayout} from "./layouts/ManagerLayout";
 import {HomeLayout} from "./layouts/HomeLayout";
+import {Product} from "./pages/manager/Product";
+import {Order} from "./pages/manager/Order";
 
 function App() {
     return (
@@ -37,8 +39,10 @@ function App() {
                 <Route path="/manager" element={<ManagerLayout/>}>
                     <Route index element={<Navigate to="dashboard" replace/>}/>
                     <Route path="dashboard" element={<ManagerDashboard/>}/>
-                    <Route path="category" element={<Category/>}/>
+                    <Route path={"category"} element={<Category/>}/>
                     <Route path={"profile"} element={<Profile/>} />
+                    <Route path={"product"} element={<Product/>} />
+                    <Route path={"order"} element={<Order/>} />
                 </Route>
             </Route>
 

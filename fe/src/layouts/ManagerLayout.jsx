@@ -9,6 +9,7 @@ export function ManagerLayout(){
         { label: "Dashboard", path: "/manager/dashboard", icon: LuLayoutDashboard },
         { label: "Category", path: "/manager/category", icon: FaRegUser },
         { label: "Product", path: "/manager/product", icon: FaRegUser },
+        { label: "Order", path: "/manager/order", icon: FaRegUser },
     ];
 
     return (

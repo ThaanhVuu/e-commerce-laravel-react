@@ -61,7 +61,17 @@ export function ModalCustom({id, title, fields, onSubmit, editData}) {
     const createEmptyForm = () => {
         const obj = {};
         for (let i = 0; i < fields.length; i++) {
-            obj[fields[i].name] = fields[i].defaultValue || "";
+            const field = fields[i];
+
+            if (field.type === "select") {
+                // Nếu có defaultValue thì dùng
+                // Nếu không, nhưng có options, thì fallback về option đầu tiên
+                obj[field.name] =
+                    field.defaultValue ||
+                    (field.options?.length > 0 ? field.options[0].value : "");
+            } else {
+                obj[field.name] = field.defaultValue || "";
+            }
         }
         return obj;
     };
@@ -89,6 +99,7 @@ export function ModalCustom({id, title, fields, onSubmit, editData}) {
         if (typeof onSubmit === "function") {
             onSubmit(form);
         }
+        setForm(createEmptyForm());
     };
 
     return (
