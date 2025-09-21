@@ -71,10 +71,10 @@ export function Category() {
                     <div key={index} className="d-flex justify-content-center">
                         <div className="card" style={{height: "300px", width: "200px"}}>
                             <img
-                                src={item.src}
+                                src={item.img_url}
                                 alt={item.name}
                                 className="mx-auto d-block category-img"
-                                style={{height: "160px", width: "auto", objectFit: "contain"}}
+                                style={{height: "160px", width: "160px", objectFit: "fill"}}
                             />
                             <div className="card-body">
                                 <p className="card-text h3 text-center fw-bold">{item.name}</p>

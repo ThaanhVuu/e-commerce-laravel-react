@@ -5,3 +5,9 @@
 .form-select{
     width: 10%;
 }
+
+.card-img-top-custom{
+    object-fit: fill;
+    width: 200px;
+    height: 200px;
+}

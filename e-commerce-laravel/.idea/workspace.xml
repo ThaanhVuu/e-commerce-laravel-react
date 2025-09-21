@@ -6,10 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="8e1c7035-a268-450f-b736-12ee2043d30f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/src/pages/manager/Category.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/pages/manager/Category.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fe/src/components2/CustomPagination.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/components2/CustomPagination.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fe/src/hooks/useCrudList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/hooks/useCrudList.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fe/src/pages/home/Category.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/pages/home/Category.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fe/src/pages/home/ProductHome.css" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/pages/home/ProductHome.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fe/src/pages/home/ProductHome.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/pages/home/ProductHome.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

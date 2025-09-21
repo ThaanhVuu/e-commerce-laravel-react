@@ -12,7 +12,6 @@ export function useCrudList(service, defaultParams = { page: 1, limit: 10 }) {
             const res = await service.getAll(filters);
             setData(res.data.data);
             setPaging(res.data);
-            console.log("paging:", res.data);
         } catch (err) {
             console.error("Fetch error:", err);
         } finally {
