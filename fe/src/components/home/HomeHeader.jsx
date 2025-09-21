@@ -6,7 +6,9 @@ import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 
 
-export function HomeHeader() {
+export function HomeHeader(
+    {home="#home", category = "#category", product = "#product", gallery = "#gallery", aboutus = "#footer", cart= "#cart"}
+) {
     const navigate = useNavigate();
 
     const handleUserClick = () => {
@@ -35,10 +37,14 @@ export function HomeHeader() {
             style={{height: "44px", backgroundColor: "#feffec", width: "100%"}}
         >
             <nav className="d-flex gap-4 justify-content-center flex-grow-1 fw-bold">
-                <a href={"#home"}><MaverickLogo height={24} width={107} accent={"#D62828"} primary={"#000000"}/></a>
-                <a href={"#home"} className="m-0 text-dark text-decoration-none" style={{fontSize: "14px"}}>Home</a>
-                <a href={"#category"} className="m-0 text-dark text-decoration-none"
+                <a href={home}><MaverickLogo height={24} width={107} accent={"#D62828"} primary={"#000000"}/></a>
+
+                <a href={home} className="m-0 text-dark text-decoration-none" style={{fontSize: "14px"}}>Home</a>
+
+                <a href={category} className="m-0 text-dark text-decoration-none"
                    style={{fontSize: "14px"}}>Category</a>
+                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+
                 {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                 <a
                     className="m-0 text-dark text-decoration-none"
@@ -48,14 +54,17 @@ export function HomeHeader() {
                         navigate("/product")
                     }}
                 >Product</a>
-                <a href={"#gallery"} className="m-0 text-dark text-decoration-none"
+
+                <a href={gallery} className="m-0 text-dark text-decoration-none"
                    style={{fontSize: "14px"}}>Gallery</a>
-                <a href={"#footer"} className="m-0 text-dark text-decoration-none" style={{fontSize: "14px"}}>About
+
+                <a href={aboutus} className="m-0 text-dark text-decoration-none" style={{fontSize: "14px"}}>About
                     us</a>
+
                 <a href={'#search'} className="m-0 text-dark text-decoration-none"><CiSearch size={18}/></a>
 
                 {/* Giỏ hàng + badge */}
-                <a href={'#cart'} className="m-0 text-dark text-decoration-none position-relative">
+                <a href={cart} className="m-0 text-dark text-decoration-none position-relative">
                     <IoBagOutline size={18}/>
                     {cartCount > 0 && (
                         <span

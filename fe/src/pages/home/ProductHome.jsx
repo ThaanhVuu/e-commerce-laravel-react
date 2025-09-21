@@ -92,7 +92,7 @@ export function ProductHome() {
                 </div>
             )}
 
-            <HomeHeader/>
+            <HomeHeader home={"/"} gallery={"/#gallery"} category={"/#category"} aboutus={"/#footer"} cart={"/cart"}/>
             <div id="product-home">
                 <hr/>
                 <h3>Product</h3>
