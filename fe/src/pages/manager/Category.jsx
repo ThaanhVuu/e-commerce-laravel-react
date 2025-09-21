@@ -95,7 +95,6 @@ export function Category() {
 
                 <CustomPagination
                     paging={paging}
-
                 />
             </div>
         </div>

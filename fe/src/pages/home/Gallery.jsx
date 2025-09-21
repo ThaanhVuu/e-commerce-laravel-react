@@ -86,7 +86,7 @@ export function Gallery() {
             <hr/>
             <div className={"d-flex justify-content-around mt-5 gap-5"}>
                 {galleries2.map((s, i) => (
-                    <img width={"auto"} height={"550px"} src={s.src} alt={s.alt} className={""}/>
+                    <img key={i} width={"auto"} height={"550px"} src={s.src} alt={s.alt} className={""}/>
                 ))}
             </div>
         </section>

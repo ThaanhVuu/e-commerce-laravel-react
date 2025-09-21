@@ -13,7 +13,6 @@ export function Category() {
     useEffect(() => {
         (async () => {
             const res = await CategoryService.getAll()
-            console.log(res);
             setCategories(res.data.data);
         })();
     }, []);

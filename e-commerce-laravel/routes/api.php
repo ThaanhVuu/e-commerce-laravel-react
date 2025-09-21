@@ -23,8 +23,11 @@ Route::prefix('v1.0')->group(function () {
     Route::get('/verify/{token}', [AuthController::class, 'handleVerificationEmail']);
     Route::post('/forgetpassword', [AuthController::class, 'forgetPassword']);
     Route::get('/resetpassword/{token}', [AuthController::class, 'resetPassword']);
-    Route::post('/hit', [VisitController::class, 'hit']);
 
+    //home
+    Route::post('/hit', [VisitController::class, 'hit']);
+    Route::get('/products', [ProductController::class, 'index']);
+    Route::get('/categories', [CategoryController::class, 'index']);
     /**
      * Admin
      */
@@ -49,14 +52,12 @@ Route::prefix('v1.0')->group(function () {
      */
     Route::middleware([JwtMiddleware::class, ManagerMiddleware::class])->group(function (){
         //category
-        Route::get('/categories', [CategoryController::class, 'index']);
         Route::post('/categories', [CategoryController::class, 'store']);
         Route::get('/categories/{category}', [CategoryController::class, 'show']);
         Route::put('/categories/{category}', [CategoryController::class, 'update']);
         Route::delete('/categories/{category}', [CategoryController::class, 'destroy']);
 
         //produc
-        Route::get('/products', [ProductController::class, 'index']);
         Route::post('/products', [ProductController::class, 'store']);
         Route::get('/products/{product}', [ProductController::class, 'show']);
         Route::put('/products/{product}', [ProductController::class, 'update']);

@@ -5,29 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8e1c7035-a268-450f-b736-12ee2043d30f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../fe/.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../fe/src/components/Geolocation.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../fe/src/index.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../fe/src/layouts/HomeLayout.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../fe/src/leafletFix.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../fe/src/pages/home/Footer.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../fe/src/pages/home/Footer.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../fe/src/services/Geolocation.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../fe/src/services/Ticker.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../fe/src/services/VisitorCount.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/src/components/home/HomeHeader.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/components/home/HomeHeader.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/src/layouts/HomeLayout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/layouts/HomeLayout.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/src/pages/home/Category.css" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/pages/home/Category.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/src/pages/home/Category.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/pages/home/Category.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/src/pages/home/Gallery.css" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/pages/home/Gallery.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/src/pages/home/Gallery.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/pages/home/Gallery.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/src/pages/home/Home.css" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/pages/home/Home.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/src/pages/home/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/pages/home/Home.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fe/src/pages/manager/Category.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/pages/manager/Category.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -255,5 +237,16 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

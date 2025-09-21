@@ -13,7 +13,7 @@ class CategoryController extends Controller
      */
     public function index(): JsonResponse
     {
-        $categories = Category::all();
+        $categories = Category::paginate(1000);
         return response()->json($categories);
     }
 

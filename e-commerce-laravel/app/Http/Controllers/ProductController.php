@@ -10,10 +10,38 @@ class ProductController extends Controller
 {
     /**
      * Hiển thị danh sách sản phẩm (có phân trang).
+     * GET /api/v1.0/categories?limit=5&search=shirt&sort_by=name&sort_order=asc
      */
-    public function index(int $limit): JsonResponse
+    public function index(Request $request): JsonResponse
     {
-        $products = Product::with('category')->paginate($limit);
+        $query = Product::with('category');
+
+        // Filter theo status
+        if ($request->filled('status')) {
+            $query->where('status', $request->get('status'));
+        }
+
+        // Filter theo category_id
+        if ($request->filled('category_id')) {
+            $query->where('category_id', $request->get('category_id'));
+        }
+
+        // Search theo tên
+        if ($request->filled('search')) {
+            $query->where('name', 'LIKE', "%" . $request->get('search') . "%");
+        }
+
+        // Sort
+        if ($request->filled(['sort_by', 'sort_order'])) {
+            $query->orderBy($request->get('sort_by'), $request->get('sort_order'));
+        } else {
+            $query->latest(); // mặc định created_at desc
+        }
+
+        // Pagination
+        $limit = (int) $request->get('limit', 10);
+        $products = $query->paginate($limit);
+
         return response()->json($products);
     }
 
