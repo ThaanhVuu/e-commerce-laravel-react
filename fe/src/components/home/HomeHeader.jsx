@@ -21,7 +21,15 @@ export function HomeHeader() {
                 <a href={"#home"}><MaverickLogo height={24} width={107} accent={"#D62828"} primary={"#000000"}/></a>
                 <a href={"#home"} className="m-0 text-dark text-decoration-none" style={{fontSize: "14px"}}>Home</a>
                 <a href={"#category"} className="m-0 text-dark text-decoration-none" style={{fontSize: "14px"}}>Category</a>
-                <a href={"#product"} className="m-0 text-dark text-decoration-none" style={{fontSize: "14px"}}>Product</a>
+                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                <a
+                    className="m-0 text-dark text-decoration-none"
+                    style={{fontSize: "14px", cursor: "pointer"}}
+                    onClick={(e) => {
+                        e.preventDefault();
+                        navigate("/product")
+                    }}
+                >Product</a>
                 <a href={"#gallery"} className="m-0 text-dark text-decoration-none" style={{fontSize: "14px"}}>Gallery</a>
                 <a href={"#footer"} className="m-0 text-dark text-decoration-none" style={{fontSize: "14px"}}>About us</a>
                 <a href={'#search'} className="m-0 text-dark text-decoration-none"><CiSearch size={18} /></a>

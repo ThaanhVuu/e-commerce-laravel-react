@@ -2,10 +2,21 @@ import Slider from "react-slick";
 import shirt from "../../assets/product/ao-1.png";
 import "./Category.css";
 import {BsCaretLeftFill, BsCaretRightFill} from "react-icons/bs";
+import {useEffect, useState} from "react";
+import {CategoryService} from "../../services/AllService";
 
 export function Category() {
     const sizeCarousel = 36;
     const colorCarousel = "#2a5996";
+    const [categories, setCategories] = useState([]);
+
+    useEffect(() => {
+        (async () => {
+            const res = await CategoryService.getAll()
+            console.log(res);
+            setCategories(res.data.data);
+        })();
+    }, []);
 
     const Prev = ({className, style, onClick}) => {
         // bỏ qua currentSlide và slideCount trong rest
@@ -43,8 +54,6 @@ export function Category() {
         nextArrow: <Next/>
     };
 
-    const items = Array(9).fill({src: shirt, name: "Shirt", description: "A description about category"});
-
     return (
         <section id="category" className="p-5">
             <hr/>
@@ -59,7 +68,7 @@ export function Category() {
             <hr/>
             <br/>
             <Slider {...settings}>
-                {items.map((item, index) => (
+                {categories.map((item, index) => (
                     <div key={index} className="d-flex justify-content-center">
                         <div className="card" style={{height: "300px", width: "200px"}}>
                             <img

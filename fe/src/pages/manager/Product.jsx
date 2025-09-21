@@ -1,179 +1,214 @@
-import {InManageLayout} from "../../components/InManageLayout";
-import {useEffect, useMemo, useState} from "react";
-import {CategoryService} from "../../services/CategoryService";
-import {API_URL} from "../../utils/Global";
-import {ProductService} from "../../services/ProductService";
-import {ModalCustom} from "../../components/ModalCustom";
-import * as bootstrap from "bootstrap";
+import {ActionBar} from "../../components2/ActionBar";
+import {useCrudList} from "../../hooks/useCrudList";
+import {CategoryService, ProductService} from "../../services/AllService";
+import {useEffect, useState} from "react";
+import {CustomTable} from "../../components2/CustomTable";
+import {CustomPagination} from "../../components2/CustomPagination";
 import {FormatDate} from "../../utils/FormatDate";
+import {ModalCustom} from "../../components/ModalCustom";
+import {Modal} from "bootstrap";
 
 export function Product() {
     const [categories, setCategories] = useState([]);
-    const [reloadKey, setReloadKey] = useState(0);
     const [editData, setEditData] = useState(null);
+    const [selectedIds, setSelectedIds] = useState([]);
 
-    // load categories 1 lần
+
     useEffect(() => {
         (async () => {
-            const res = await CategoryService.getCategories();
-            setCategories(res.data ?? []);
+            let res = await CategoryService.getAll({limit: 1000});
+            setCategories(res.data.data);
         })();
     }, []);
 
-    // options cho filter & modal, memo để không tính lại nhiều lần
-    const categoryOptions = useMemo(() => ([
-        { label: "All", value: "" },
-        ...categories.map(c => ({ label: c.name, value: String(c.id) }))
-    ]), [categories]);
+    const {data, filters, setFilters, paging}
+        = useCrudList(ProductService, {
+        page: 1,
+        limit: 10,
+        search: "",
+        sort_by: "",
+        sort_order: "",
+        category_id: ""
+    });
 
-    // ========== CẤU HÌNH InManageLayout (refactor) ==========
-    // search theo name + category.name
-    const searchableFields = ["name", "category.name"];
-
-    // filter theo category
-    const filters = [
-        {
-            name: "category",
-            label: "Category",
-            options: categoryOptions,
-            predicate: (item, v) => String(item?.category?.id ?? "") === String(v),
-        },
+    const sortFields = [
+        {label: "None", value: null},
+        {label: "Price ↑", value: {sort_by: "price", sort_order: "desc"}},
+        {label: "Price ↓", value: {sort_by: "price", sort_order: "asc"}},
+        {label: "Name A→Z", value: {sort_by: "name", sort_order: "asc"}},
+        {label: "Name Z→A", value: {sort_by: "name", sort_order: "desc"}},
     ];
 
-    // sort theo price & newest
-    const sorts = [
-        { label: "Price ↑", value: "price_asc",
-            comparator: (a,b)=> Number(a?.price??0) - Number(b?.price??0) },
-        { label: "Price ↓", value: "price_desc",
-            comparator: (a,b)=> Number(b?.price??0) - Number(a?.price??0) },
-        { label: "Newest", value: "newest",
-            comparator: (a,b)=> new Date(b?.created_at??0) - new Date(a?.created_at??0) },
+    const filterFields = [
+        {label: "All Categories", value: ""},
+        ...categories.map(c => ({
+            label: c.name,
+            value: c.id
+        }))
     ];
 
-    // ========== CRUD handlers ==========
-    const handleDelete = async (selectedIds=[]) => {
-        if (!selectedIds.length) return;
-        if (!window.confirm(`Delete ${selectedIds.length} products?`)) return;
-        try {
-            await Promise.all(selectedIds.map(id => ProductService.deleteProduct(id)));
-            alert("Delete successful!");
-            setReloadKey(k => k+1);
-        } catch (e) {
-            console.error(e);
-            alert("Delete failed ❌");
-        }
-    };
+    const theadFields = [
+        "Name", "Category", "Price", "Stock", "Status", "Image", "Description", "Created at", "Updated at", "Action"
+    ]
 
-    const handleEdit = async (id) => {
-        try {
-            const res = await ProductService.getProductById(id);
-            setEditData({
-                ...res,
-                category_id: res?.category?.id ?? ""
-            });
-            const el = document.getElementById("productModalToEdit");
-            if (el) bootstrap.Modal.getOrCreateInstance(el).show();
-        } catch (e) {
-            console.error(e);
-            alert("Load product failed ❌");
-        }
-    };
-
-    const submitEdit = async (formData) => {
-        try {
-            const res = await ProductService.updateProduct(editData.id, formData);
-            alert(res.message ?? "Updated!");
-            setReloadKey(k => k+1);
-        } catch (e) {
-            console.error(e);
-            alert("Update failed ❌");
-        }
-    };
-
-    const handleAddNew = () => {
-        const el = document.getElementById("productModalToAdd");
-        if (el) bootstrap.Modal.getOrCreateInstance(el).show();
-    };
-
-    const submitCreate = async (formData) => {
-        try {
-            const res = await ProductService.createProduct(formData);
-            alert(res.message ?? "Created!");
-            setReloadKey(k => k+1);
-        } catch (e) {
-            console.error(e);
-            alert("Create failed ❌");
-        }
-    };
-
-    // fields cho Modal (options category cập nhật theo state)
-    const modalFieldsSetting = [
-        { name: "name", label: "Product Name", type: "text" },
-        { name: "description", label: "Description", type: "text" },
-        { name: "price", label: "Price (VND)", type: "number", defaultValue: 0 },
-        { name: "stock", label: "Stock Quantity", type: "number", defaultValue: 0 },
-        {
-            name: "status", label: "Status", type: "select",
-            options: [
+    const productFields = [
+        { name: "name", label: "Name", type: "text" },
+        { name: "category_id", label: "Category", type: "select", options: categories.map(c => ({ label: c.name, value: c.id })) },
+        { name: "price", label: "Price", type: "number" },
+        { name: "stock", label: "Stock", type: "number" },
+        { name: "status", label: "Status", type: "select", options: [
                 { label: "Active", value: "ACTIVE" },
                 { label: "Inactive", value: "INACTIVE" }
-            ],
-            defaultValue: "ACTIVE"
+            ]
         },
-        {
-            name: "category_id", label: "Category", type: "select",
-            options: categories.map(item => ({ label: item.name, value: item.id })),
-            defaultValue: categories[0]?.id ?? ""
-        }
+        { name: "img_url", label: "Image URL", type: "text" },
+        { name: "description", label: "Description", type: "text" }
     ];
 
-    const theadSetting = ["Name","Category","Price","Stock","Status","Created at","Updated at","Action"];
+
+    function onPageChange(newPage) {
+        // noinspection JSCheckFunctionSignatures
+        setFilters(prev => ({
+            ...prev,
+            page: newPage,
+        }));
+    }
+
+    function onLimitChange(newLimit) {
+        // noinspection JSCheckFunctionSignatures
+        setFilters(prev => ({
+            ...prev,
+            limit: newLimit
+        }))
+    }
+
+    function handleEditBtn(item) {
+        setEditData(item);
+        const modalEl = document.getElementById("productModal");
+        const modal = new Modal(modalEl);
+        modal.show();
+    }
+
+    async function handleSave(formData) {
+        try {
+            if (editData) {
+                let res = await ProductService.update(editData.id, formData);
+                alert(res.message);
+            } else {
+                let res = await ProductService.create(formData);
+                alert(res.message);
+            }
+            setEditData(null);
+            setFilters(prev => ({ ...prev })); // refresh list
+        } catch (err) {
+            console.error("Save error:", err);
+        }
+    }
+
+    function handleAddBtn(){
+        setEditData(null);
+        const modalEl = document.getElementById("productModal");
+        const modal = new Modal(modalEl);
+        modal.show();
+    }
+
+    async function handleDeleteBtn() {
+        if (selectedIds.length === 0) {
+            alert("Please select at least one product to delete!");
+            return;
+        }
+
+        if (!window.confirm(`Are you sure you want to delete ${selectedIds.length} products?`)) {
+            return;
+        }
+
+        try {
+            // chạy song song tất cả API delete
+            await Promise.all(
+                selectedIds.map(id => ProductService.remove(id))
+            );
+
+            // reset danh sách chọn
+            setSelectedIds([]);
+
+            // reload list
+            setFilters(prev => ({ ...prev }));
+
+            alert("Deleted successfully!");
+        } catch (err) {
+            console.error("Delete error:", err);
+            alert("Delete failed!");
+        }
+    }
+
 
     return (
-        <div className="d-flex flex-column">
-            <h3><strong>List Product</strong></h3>
+        <section className="d-flex flex-column p-3">
+            <h4 className="fw-bold">Product List</h4>
+            <div className="border p-3 bg-light rounded-2 d-flex flex-column gap-2">
+                <ActionBar
+                    sortFields={sortFields}
+                    filterFields={filterFields}
+                    filters={filters}
+                    setFilters={setFilters}
+                    handleAddBtn={handleAddBtn}
+                    handleDeleteBtn={handleDeleteBtn}
+                />
 
-            <InManageLayout
-                key={reloadKey}
-                getApi={`${API_URL}/products`}
-                theadSetting={theadSetting}
-                // cấu hình tái sử dụng ↓↓↓
-                searchableFields={searchableFields}
-                filters={filters}
-                sorts={sorts}
-                idAccessor="id"
-                // CRUD
-                handleDelete={handleDelete}
-                handleEdit={handleEdit}
-                handleAddNew={handleAddNew}
-                // render mỗi dòng
-                renderRow={(item) => (
-                    <>
-                        <td>{item.name}</td>
-                        <td>{item.category?.name ?? "N/A"}</td>
-                        <td>{item.price}</td>
-                        <td>{item.stock}</td>
-                        <td>{item.status}</td>
-                        <td>{FormatDate(item.created_at)}</td>
-                        <td>{FormatDate(item.updated_at)}</td>
-                    </>
-                )}
-            />
+                <CustomTable
+                    data={data}
+                    theadFields={theadFields}
+                    renderRow={() =>
+                        data.map((item) => (
+                            <tr key={item.id}>
+                                <td><input type={"checkbox"} className={"form-check-input"}
+                                           onChange={(e) => {
+                                               if (e.target.checked) {
+                                                   setSelectedIds(prev => [...prev, item.id]);
+                                               } else {
+                                                   setSelectedIds(prev => prev.filter(id => id !== item.id));
+                                               }
+                                           }}
+                                /></td>
+                                <td>{item.name}</td>
+                                <td>{item.category?.name}</td>
+                                <td>{item.price}</td>
+                                <td>{item.stock}</td>
+                                <td>{item.status}</td>
+                                <td>
+                                    <img
+                                        src={item.img_url}
+                                        alt={item.name}
+                                        width={"60px"} height={"auto"}
+                                        style={{objectFit: "fill"}}
+                                    />
+                                </td>
+                                <td>{item.description}</td>
+                                <td>{FormatDate(item.created_at)}</td>
+                                <td>{FormatDate(item.updated_at)}</td>
+                                <td>
+                                    <button className="btn btn-primary btn-sm me-2" onClick={() => handleEditBtn(item)}>Edit</button>
+                                </td>
+                            </tr>
+                        ))
+                    }
+                />
 
-            <ModalCustom
-                id="productModalToEdit"
-                title="Edit Product"
-                fields={modalFieldsSetting}
-                onSubmit={submitEdit}
-                editData={editData}
-            />
 
-            <ModalCustom
-                id="productModalToAdd"
-                title="Add New Product"
-                fields={modalFieldsSetting}
-                onSubmit={submitCreate}
-            />
-        </div>
+                <CustomPagination
+                    paging={paging}
+                    onPageChange={onPageChange}
+                    onLimitChange={onLimitChange}
+                />
+
+                <ModalCustom
+                    id="productModal"
+                    title={editData ? "Edit Product" : "Add Product"}
+                    fields={productFields}
+                    onSubmit={handleSave}
+                    editData={editData}
+                />
+            </div>
+        </section>
     );
 }

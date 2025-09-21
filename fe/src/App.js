@@ -14,6 +14,7 @@ import {ManagerLayout} from "./layouts/ManagerLayout";
 import {HomeLayout} from "./layouts/HomeLayout";
 import {Product} from "./pages/manager/Product";
 import {Order} from "./pages/manager/Order";
+import {ProductHome} from "./pages/home/ProductHome";
 
 function App() {
     return (
@@ -23,6 +24,7 @@ function App() {
             <Route path="/signup" element={<SignUp/>}/>
             <Route path="/forgetpassword" element={<ForgetPassword/>}/>
             <Route path={"/"} element={<HomeLayout/>}/>
+            <Route path={"/product"} element={<ProductHome/>}/>
 
             {/* Admin */}
             <Route element={<ProtectedRoute roles={["ADMIN"]}/>}>
