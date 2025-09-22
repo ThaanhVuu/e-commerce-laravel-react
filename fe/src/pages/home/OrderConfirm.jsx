@@ -1,10 +1,12 @@
 import { HomeHeader } from "../../components/home/HomeHeader";
 import { CiShoppingCart } from "react-icons/ci";
-import { useLocation } from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import { useState } from "react";
 import { OrderService, ProfileService } from "../../services/AllService";
+import {Footer} from "./Footer";
 
 export function OrderConfirm() {
+    const navigate = useNavigate();
     const location = useLocation();
     const payable = location.state?.payable || 0;
 
@@ -59,6 +61,7 @@ export function OrderConfirm() {
             await createOrder(newProfileId);
             alert("Order confirmed successfully!");
             localStorage.removeItem("cart");
+            navigate("/");
         } catch (err) {
             alert("Something went wrong!");
             console.log(err);
@@ -87,7 +90,7 @@ export function OrderConfirm() {
 
     return (
         <section>
-            <HomeHeader />
+            <HomeHeader home={"/"} gallery={"/#gallery"} category={"/#category"} aboutus={"/#footer"} cart={"/cart"}/>
             <hr />
             <h4 className="text-center">
                 <CiShoppingCart size={40} /> Confirm
@@ -245,6 +248,7 @@ export function OrderConfirm() {
                     </div>
                 </div>
             </div>
+            <Footer/>
         </section>
     );
 }

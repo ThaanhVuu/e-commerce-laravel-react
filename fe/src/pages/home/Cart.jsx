@@ -3,6 +3,7 @@ import {CiShoppingCart} from "react-icons/ci";
 import {FaTrash} from "react-icons/fa";
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
+import {Footer} from "./Footer";
 
 export function Cart() {
     // 🔹 State giỏ hàng: khởi tạo từ localStorage
@@ -161,6 +162,7 @@ export function Cart() {
                     </div>
                 )}
             </div>
+            <Footer/>
         </section>
     );
 }

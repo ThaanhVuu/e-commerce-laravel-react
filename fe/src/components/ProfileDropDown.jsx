@@ -30,7 +30,7 @@ export function ProfileDropDown({profile}){
                 {profile.username}
             </Dropdown.Toggle>
 
-            <Dropdown.Menu>
+            <Dropdown.Menu style={{zIndex: "9999"}}>
                 <Dropdown.Item>Profile</Dropdown.Item>
                 <Dropdown.Divider />
                 <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>

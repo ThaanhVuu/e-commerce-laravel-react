@@ -18,6 +18,8 @@ import {ProductHome} from "./pages/home/ProductHome";
 //nhatminh
 import {Cart} from "./pages/home/Cart";
 import {OrderConfirm} from "./pages/home/OrderConfirm";
+import {CreateProfile} from "./pages/auth/CreateProfile";
+import {HomeSetting} from "./pages/manager/HomeSetting";
 function App() {
     return (
         <Routes>
@@ -29,6 +31,7 @@ function App() {
             <Route path={'/cart'} element={<Cart/>} />
             <Route path={'/order-confirm'} element={<OrderConfirm/>} />
             <Route path={'/product'} element={<ProductHome/>} />
+            <Route path={'/create-profile'} element={<CreateProfile/>} />
 
 
             {/* Admin */}
@@ -50,6 +53,7 @@ function App() {
                     <Route path={"profile"} element={<Profile/>} />
                     <Route path={"product"} element={<Product/>} />
                     <Route path={"order"} element={<Order/>} />
+                    <Route path={"home-setting"} element={<HomeSetting/>} />
                 </Route>
             </Route>
 

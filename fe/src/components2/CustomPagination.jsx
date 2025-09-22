@@ -4,7 +4,7 @@ export function CustomPagination({
 
     return (
         <div className={"d-flex justify-content-around "}>
-            {rowsPerPage === true && (
+            {rowPerPageDisplay === true && (
                 <div className={"d-flex align-items-center gap-2 rowPerPage"}>
                     <span className={"h6"}>Rows per page</span>
                     <select className={"form-select w-auto"}

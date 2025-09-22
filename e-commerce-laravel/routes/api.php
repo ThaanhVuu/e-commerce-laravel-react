@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BannerHomeImageController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderDetailController;
@@ -78,6 +79,7 @@ Route::prefix('v1.0')->group(function () {
         Route::put('/order-details/{orderDetail}', [OrderDetailController::class, 'update']);
         Route::delete('/order-details/{orderDetail}', [OrderDetailController::class, 'destroy']);
 
+        Route::apiResource('banner-home-images', BannerHomeImageController::class);
     });
 
     /**

@@ -25,3 +25,9 @@ export const ProfileService = {
 export const OrderService = {
     create: (data) => api.post("/orders", data),
 }
+
+export const SettingHomeService = {
+    getAll: (params = {}) => api.get("/banner-home-images", { params }),
+    create: (data) => api.post("/banner-home-images", data),
+    update: (id, data) => api.put(`/banner-home-images/${id}`, data),
+}

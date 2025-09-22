@@ -5,19 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8e1c7035-a268-450f-b736-12ee2043d30f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../fe/src/pages/home/Cart.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../fe/src/pages/home/OrderConfirm.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBD.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fe/src/pages/auth/CreateProfile.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fe/src/pages/manager/HomeSetting.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/63efc190-ba0f-4707-9ee8-cacca4308101.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/63efc190-ba0f-4707-9ee8-cacca4308101.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OrderController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OrderController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProfileController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProfileController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Order.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Order.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/OrderDetail.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/OrderDetail.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../fe/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/src/components/home/HomeHeader.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/components/home/HomeHeader.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fe/src/components2/CustomPagination.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/components2/CustomPagination.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fe/src/pages/home/Cart.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/pages/home/Cart.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fe/src/pages/home/OrderConfirm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/pages/home/OrderConfirm.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../fe/src/pages/home/ProductHome.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/pages/home/ProductHome.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../fe/src/services/AllService.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/services/AllService.jsx" afterDir="false" />
     </list>
@@ -172,7 +168,7 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.laravel_idea.run_console_parameters_ask": "true",
-    "git-widget-placeholder": "Merging vu",
+    "git-widget-placeholder": "vu",
     "ignore.virus.scanning.warn.message": "true",
     "laravel_idea.dialogs.run_console_settings.width": "276",
     "laravel_idea.dialogs.run_console_settings.x": "630",

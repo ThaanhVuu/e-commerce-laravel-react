@@ -56,7 +56,7 @@
  /* eslint-disable react-hooks/exhaustive-deps */
 import {useEffect, useState} from "react";
 
-export function ModalCustom({id, title, fields, onSubmit, editData}) {
+export function ModalCustom({id, title, fields, onSubmit, editData, renderthing, width = "400px"}) {
     // Khởi tạo form rỗng
     const createEmptyForm = () => {
         const obj = {};
@@ -110,7 +110,7 @@ export function ModalCustom({id, title, fields, onSubmit, editData}) {
             data-bs-keyboard="false"
             tabIndex="-1"
         >
-            <div className="modal-dialog">
+            <div className="modal-dialog" style={{maxWidth: width}}>
                 <div className="modal-content">
                     {/* HomeHeader */}
                     <div className="modal-header">
@@ -165,6 +165,7 @@ export function ModalCustom({id, title, fields, onSubmit, editData}) {
                                 )}
                             </div>
                         ))}
+                        {typeof renderthing === "function" && renderthing(form)}
                     </div>
 
                     {/* Footer */}
