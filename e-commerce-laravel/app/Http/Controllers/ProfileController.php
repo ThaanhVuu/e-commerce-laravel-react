@@ -24,10 +24,10 @@ class ProfileController extends Controller
     public function store(Request $request): JsonResponse
     {
         $validate = $request->validate([
-            'user_id'   => 'required|exists:users,id',
-            'full_name' => 'nullable|string|max:100',
-            'phone'     => 'nullable|string|max:20',
-            'address'   => 'nullable|string',
+            'user_id'   => 'nullable|exists:users,id',
+            'full_name' => 'required|string|max:100',
+            'phone'     => 'required|string|max:20',
+            'address'   => 'required|string',
             'gender'    => 'nullable|in:MALE,FEMALE,OTHER',
             'dob'       => 'nullable|date',
         ]);

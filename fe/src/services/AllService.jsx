@@ -1,4 +1,5 @@
 import { api } from "../utils/api";
+import {data} from "react-router-dom";
 
 export const ProductService = {
     getAll: (params = {}) => api.get("/products", { params }),
@@ -16,3 +17,11 @@ export const CategoryService = {
     update: (id, data) => api.put(`/categories/${id}`, data),
     remove: (id) => api.delete(`/categories/${id}`),
 };
+
+export const ProfileService = {
+    create: (data) => api.post("/profile", data),
+}
+
+export const OrderService = {
+    create: (data) => api.post("/orders", data),
+}

@@ -10,26 +10,30 @@ export function HomeHeader(
     {home="#home", category = "#category", product = "#product", gallery = "#gallery", aboutus = "#footer", cart= "#cart"}
 ) {
     const navigate = useNavigate();
-
-    const handleUserClick = () => {
-        navigate('/signin');
-    }
-
-    const [cartCount, setCartCount] = useState(0);
+    const [cartCount, setCartCount] = useState()
 
     useEffect(() => {
         const updateCartCount = () => {
-            const cart = JSON.parse(localStorage.getItem("cart")) || [];
-            const total = cart.reduce((sum, item) => sum + (item.quantity || 0), 0);
+            const cartData = JSON.parse(localStorage.getItem("cart")) || [];
+            const total = cartData.reduce((sum, item) => sum + (item.quantity || 0), 0);
             setCartCount(total);
         };
 
         updateCartCount();
 
-        // Lắng nghe storage event (nếu có thay đổi từ tab khác)
+        // Lắng nghe cả storage (khác tab) và cartUpdated (cùng tab)
         window.addEventListener("storage", updateCartCount);
-        return () => window.removeEventListener("storage", updateCartCount);
+        window.addEventListener("cartUpdated", updateCartCount);
+
+        return () => {
+            window.removeEventListener("storage", updateCartCount);
+            window.removeEventListener("cartUpdated", updateCartCount);
+        };
     }, []);
+    
+    const handleUserClick = () => {
+        navigate('/signin');
+    }
 
     return (
         <header
@@ -64,7 +68,7 @@ export function HomeHeader(
                 <a href={'#search'} className="m-0 text-dark text-decoration-none"><CiSearch size={18}/></a>
 
                 {/* Giỏ hàng + badge */}
-                <a href={cart} className="m-0 text-dark text-decoration-none position-relative">
+                <a href={"/cart"} className="m-0 text-dark text-decoration-none position-relative">
                     <IoBagOutline size={18}/>
                     {cartCount > 0 && (
                         <span
@@ -77,8 +81,7 @@ export function HomeHeader(
                 </a>
 
                 {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                <a onClick={handleUserClick} className="m-0 text-dark text-decoration-none" style={{cursor: "pointer"}}><LuCircleUser
-                    size={16}/></a>
+                <a onClick={handleUserClick} className="m-0 text-dark text-decoration-none" style={{cursor: "pointer"}}><LuCircleUser size={16}/></a>
             </nav>
         </header>
     )

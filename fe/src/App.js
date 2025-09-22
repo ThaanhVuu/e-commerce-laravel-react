@@ -15,7 +15,9 @@ import {HomeLayout} from "./layouts/HomeLayout";
 import {Product} from "./pages/manager/Product";
 import {Order} from "./pages/manager/Order";
 import {ProductHome} from "./pages/home/ProductHome";
-
+//nhatminh
+import {Cart} from "./pages/home/Cart";
+import {OrderConfirm} from "./pages/home/OrderConfirm";
 function App() {
     return (
         <Routes>
@@ -24,7 +26,10 @@ function App() {
             <Route path="/signup" element={<SignUp/>}/>
             <Route path="/forgetpassword" element={<ForgetPassword/>}/>
             <Route path={"/"} element={<HomeLayout/>}/>
-            <Route path={"/product"} element={<ProductHome/>}/>
+            <Route path={'/cart'} element={<Cart/>} />
+            <Route path={'/order-confirm'} element={<OrderConfirm/>} />
+            <Route path={'/product'} element={<ProductHome/>} />
+
 
             {/* Admin */}
             <Route element={<ProtectedRoute roles={["ADMIN"]}/>}>

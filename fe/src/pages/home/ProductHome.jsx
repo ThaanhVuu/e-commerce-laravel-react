@@ -61,6 +61,7 @@ export function ProductHome() {
             // 4. Thông báo
             setToastMessage(`${product.name} đã thêm vào giỏ!`);
             setTimeout(() => setToastMessage(""), 1500);
+            window.dispatchEvent(new Event("cartUpdated"));
         } catch (error) {
             console.error("Add to cart error:", error);
         }
@@ -141,8 +142,8 @@ export function ProductHome() {
                 {loading && <p>Loading...</p>}
                 <div className={"row"}>
                     {data.map(product => (
-                        <div className={"col-3"} key={product.id}>
-                            <div className={"card border rounded-3 pt-3 mb-4"}>
+                        <div className={"col-3 my-2"} key={product.id} style={{height: "450px"}}>
+                            <div className={"card border rounded-3 pt-3 mb-4 h-100"}>
                                 {product.img_url ? (
                                     <img className={"card-img-top-custom d-block mx-auto"} src={product.img_url}
                                          alt={product.name}/>
@@ -151,10 +152,13 @@ export function ProductHome() {
                                          src={"https://i.pinimg.com/736x/c3/32/73/c3327380fdac729067f87ece947f1b19.jpg"}
                                          alt={product.name}/>
                                 )}
-                                <div className={"card-body d-flex flex-column"}>
-                                    <h5 className={"card-title"}>{product.name}</h5>
-                                    <span className={"card-text text-muted"}>{product.category.name}</span>
-                                    <span className={"card-text text-danger"}>{product.price}</span>
+                                <div className={"card-body d-flex flex-column justify-content-between"}>
+                                    <div className={"d-flex flex-column"}>
+                                        <h5 className={"card-title"}>{product.name}</h5>
+                                        <span className={"card-text text-muted"}>{product.category.name}</span>
+                                        <span className={"card-text text-danger"}>{Number(product.price).toLocaleString()}$</span>
+                                        <span className={"card-text text-dark"}>{product.description}</span>
+                                    </div>
                                     <button className={"btn btn-warning w-50 mt-2"} onClick={() => addToCart(product)}>
                                         <MdAddShoppingCart size={20}/>
                                     </button>

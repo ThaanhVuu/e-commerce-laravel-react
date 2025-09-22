@@ -23,11 +23,12 @@ class OrderController extends Controller
 
     /**
      * Tạo order mới (kèm order details)
+     * @throws \Throwable
      */
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'user_id' => 'required|exists:users,id',
+            'profile_id' => 'required|exists:profiles,id',
             'items'   => 'required|array|min:1',
             'items.*.product_id' => 'required|exists:products,id',
             'items.*.quantity'   => 'required|integer|min:1',
@@ -36,7 +37,7 @@ class OrderController extends Controller
         return DB::transaction(function () use ($validated) {
             $order = Order::create([
                 'id' => Str::uuid(),
-                'user_id' => $validated['user_id'],
+                'profile_id' => $validated['profile_id'],
                 'total_price' => 0,
                 'status' => 'PENDING',
             ]);
@@ -54,6 +55,12 @@ class OrderController extends Controller
                     'quantity' => $item['quantity'],
                     'price' => $price,
                 ]);
+
+                if ($order->status !== 'CANCELED') {
+                    $product->update([
+                        'stock' => $product->stock - $item['quantity']
+                    ]);
+                }
 
                 $total += $price;
             }

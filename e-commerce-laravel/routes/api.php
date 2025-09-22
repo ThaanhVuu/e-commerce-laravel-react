@@ -28,6 +28,9 @@ Route::prefix('v1.0')->group(function () {
     Route::post('/hit', [VisitController::class, 'hit']);
     Route::get('/products', [ProductController::class, 'index']);
     Route::get('/categories', [CategoryController::class, 'index']);
+    Route::post('/orders', [OrderController::class, 'store']);
+    Route::post('/orders/details', [OrderDetailController::class, 'store']);
+    Route::post('/profile', [ProfileController::class, 'store']);
     /**
      * Admin
      */
@@ -57,7 +60,7 @@ Route::prefix('v1.0')->group(function () {
         Route::put('/categories/{category}', [CategoryController::class, 'update']);
         Route::delete('/categories/{category}', [CategoryController::class, 'destroy']);
 
-        //produc
+        //product
         Route::post('/products', [ProductController::class, 'store']);
         Route::get('/products/{product}', [ProductController::class, 'show']);
         Route::put('/products/{product}', [ProductController::class, 'update']);
@@ -65,14 +68,12 @@ Route::prefix('v1.0')->group(function () {
 
         // Orders
         Route::get('/orders', [OrderController::class, 'index']);
-        Route::post('/orders', [OrderController::class, 'store']);
         Route::get('/orders/{order}', [OrderController::class, 'show']);
         Route::put('/orders/{order}', [OrderController::class, 'update']);
         Route::delete('/orders/{order}', [OrderController::class, 'destroy']);
 
         // Order details
         Route::get('/orders/{orderId}/details', [OrderDetailController::class, 'index']);
-        Route::post('/orders/{orderId}/details', [OrderDetailController::class, 'store']);
         Route::get('/order-details/{orderDetail}', [OrderDetailController::class, 'show']);
         Route::put('/order-details/{orderDetail}', [OrderDetailController::class, 'update']);
         Route::delete('/order-details/{orderDetail}', [OrderDetailController::class, 'destroy']);

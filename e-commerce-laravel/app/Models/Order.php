@@ -20,6 +20,8 @@ class Order extends Model
         'user_id',
         'total_price',
         'status',
+        'id',
+        'profile_id',
     ];
 
     public function user(): BelongsTo
