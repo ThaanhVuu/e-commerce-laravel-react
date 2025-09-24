@@ -1,6 +1,4 @@
 import { api } from "../utils/api";
-import {data} from "react-router-dom";
-
 export const ProductService = {
     getAll: (params = {}) => api.get("/products", { params }),
     getById: (id) => api.get(`/products/${id}`),
@@ -24,6 +22,9 @@ export const ProfileService = {
 
 export const OrderService = {
     create: (data) => api.post("/orders", data),
+    getAll: (params = {}) => api.get("/orders", { params }),
+    update: (id, data) => api.put(`/orders/${id}`, data),
+    remove: (id) => api.delete(`/orders/${id}`),
 }
 
 export const SettingBanner = {
@@ -38,4 +39,11 @@ export const SettingGallery = {
     create: (data) => api.post("/gallery-images", data),
     update: (id, data) => api.put(`/gallery-images/${id}`, data),
     remove: (id) => api.delete(`/gallery-images/${id}`),
+}
+
+export const SettingCollection = {
+    getAll: (params = {}) => api.get("/collection", { params }),
+    create: (data) => api.post("/collection", data),
+    update: (id, data) => api.put(`/collection/${id}`, data),
+    remove: (id) => api.delete(`/collection/${id}`),
 }

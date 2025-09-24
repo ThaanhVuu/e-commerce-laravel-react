@@ -25,6 +25,7 @@ class CategoryController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:100|unique:categories,name',
             'description' => 'nullable|string',
+            'img_url' => 'sometimes|required|string|max:1000',
         ]);
 
         $category = Category::create($validated);
@@ -51,6 +52,7 @@ class CategoryController extends Controller
         $validated = $request->validate([
             'name' => 'sometimes|required|string|max:100|unique:categories,name,' . $category->id,
             'description' => 'nullable|string',
+            'img_url' => 'sometimes|required|string|max:1000'
         ]);
 
         $category->update($validated);

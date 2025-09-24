@@ -24,9 +24,9 @@ class Order extends Model
         'profile_id',
     ];
 
-    public function user(): BelongsTo
+    public function profile(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Profile::class);
     }
 
     public function orderDetails(): Order|HasMany

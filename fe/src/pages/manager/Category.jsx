@@ -6,6 +6,7 @@ import {CategoryService} from "../../services/AllService";
 import {FormatDate} from "../../utils/FormatDate";
 import {Modal} from "bootstrap";
 import {useState} from "react";
+import {ModalCustom} from "../../components/ModalCustom";
 
 export function Category() {
     const [editData, setEditData] = useState(null);
@@ -24,7 +25,7 @@ export function Category() {
 
     function handleEditBtn(item) {
         setEditData(item);
-        const modalEl = document.getElementById("productModal");
+        const modalEl = document.getElementById("category");
         const modal = new Modal(modalEl);
         modal.show();
     }
@@ -33,7 +34,8 @@ export function Category() {
         try {
             if (editData) {
                 let res = await CategoryService.update(editData.id, formData);
-                alert(res.message);
+                console.log(formData);
+                alert(res.data.message);
             } else {
                 let res = await CategoryService.create(formData);
                 alert(res.message);
@@ -47,17 +49,60 @@ export function Category() {
 
     function handleAddBtn() {
         setEditData(null);
-        const modalEl = document.getElementById("productModal");
+        const modalEl = document.getElementById("category");
         const modal = new Modal(modalEl);
         modal.show();
     }
+
+    async function handleDelete(){
+        if (selectedIds.length === 0) {
+            alert("Please select at least one category to delete!");
+            return;
+        }
+
+        if (!window.confirm(`Are you sure you want to delete ${selectedIds.length} categories?`)) {
+            return;
+        }
+
+        try {
+            // chạy song song tất cả API delete
+            await Promise.all(
+                selectedIds.map(id => CategoryService.remove(id))
+            );
+
+            // reset danh sách chọn
+            setSelectedIds([]);
+
+            // reload list
+            setFilters(prev => ({ ...prev }));
+
+            alert("Deleted successfully!");
+        } catch (err) {
+            console.error("Delete error:", err);
+            alert("Delete failed!");
+        }
+    }
+
+    const cateFieldsModal = [
+        { name: "name", label: "Name", type: "text" },
+        { name: "description", label: "Description", type: "text"},
+        { name: "img_url", label: "Image URL", type: "text" },
+    ];
 
 
     return (
         <div className={"d-flex flex-column p-3"}>
             <h4 className="fw-bold">Product List</h4>
             <div className="border p-3 bg-light rounded-2 d-flex flex-column gap-2">
+                <ModalCustom
+                    id={"category"}
+                    editData={editData}
+                    onSubmit={handleSave}
+                    title={ editData ? "Edit Category" : "Add Category"}
+                    fields={cateFieldsModal}
+                />
                 <ActionBar
+                    handleDeleteBtn={handleDelete}
                     handleAddBtn={handleAddBtn}
                     filters={filters}
                     setFilters={setFilters}
@@ -72,12 +117,15 @@ export function Category() {
                         data.map(item => (
                             <tr key={item.id}>
                                 <td><input type={"checkbox"} className={"form-check-input"}
+                                           checked={selectedIds.includes(item.id)} // 🔑 sync với state
                                            onChange={(e) => {
-                                                if (e.target.checked) {
-                                                    setSelectedIds(prevState => [...prevState, item.id]);
-                                                }else {
-                                                    setSelectedIds(prev => prev.filter(id => id !== item.id));
-                                                }
+                                               if (e.target.checked) {
+                                                   setSelectedIds((prev) => [...prev, item.id]);
+                                               } else {
+                                                   setSelectedIds((prev) =>
+                                                       prev.filter((id) => id !== item.id)
+                                                   );
+                                               }
                                            }}
                                 /></td>
                                 <td>{item.name}</td>

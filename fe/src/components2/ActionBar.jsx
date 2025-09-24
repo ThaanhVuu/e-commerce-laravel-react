@@ -4,7 +4,8 @@ export function ActionBar({
                               filters = {},
                               setFilters,
                               handleAddBtn,
-                              handleDeleteBtn
+                              handleDeleteBtn,
+                              filterKey = "category_id",
                           }) {
     const encode = (v) => {
         if (v === null) return "";       // ép null về chuỗi rỗng
@@ -58,10 +59,10 @@ export function ActionBar({
             }
             <select
                 className="form-select w-25"
-                value={filters.category_id || ""}
+                value={filters[filterKey] || ""}
                 onChange={(e) => setFilters(prev => ({
                     ...prev,
-                    category_id: e.target.value,
+                    [filterKey]: e.target.value,
                     page: 1
                 }))}
             >

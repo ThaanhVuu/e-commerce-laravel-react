@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BannerHomeImageController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\GalleryImageController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderDetailController;
@@ -82,6 +83,7 @@ Route::prefix('v1.0')->group(function () {
 
         Route::apiResource('banner-home-images', BannerHomeImageController::class);
         Route::apiResource('gallery-images', GalleryImageController::class);
+        Route::apiResource('collection', CollectionController::class);
     });
 
     /**

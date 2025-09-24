@@ -36,3 +36,11 @@
     background-color: #feffec;
     scroll-margin-top: 44px;
 }
+
+.gallery-img {
+    height: 600px !important;
+    width: 480px !important;
+    display: block !important;
+    border-radius: 30px;
+    object-fit: fill !important; /* ép vừa khung, co/dãn ảnh */
+}

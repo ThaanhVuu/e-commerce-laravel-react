@@ -2,7 +2,7 @@
 
 import {CustomTable} from "../../components2/CustomTable";
 import {useCrudList} from "../../hooks/useCrudList";
-import {SettingBanner, SettingGallery} from "../../services/AllService";
+import {SettingBanner, SettingCollection, SettingGallery} from "../../services/AllService";
 import {ActionBar} from "../../components2/ActionBar";
 import {CustomPagination} from "../../components2/CustomPagination";
 import {ModalCustom} from "../../components/ModalCustom";
@@ -27,6 +27,7 @@ export function HomeSetting() {
         const modalEl = document.getElementById("bannerModal");
         new Modal(modalEl).show();
     }
+
     function handleBannerEditBtn(item) {
         setEditBanner(item);
         const modalEl = document.getElementById("bannerModal");
@@ -77,7 +78,7 @@ export function HomeSetting() {
         data: dataGallery,
         paging: pagingGallery,
         setFilters: setFiltersGallery
-    } = useCrudList(SettingGallery, { page: 1, limit: 10 });
+    } = useCrudList(SettingGallery, {page: 1, limit: 10});
 
     const [editGallery, setEditGallery] = useState()
 
@@ -85,20 +86,34 @@ export function HomeSetting() {
         setFiltersGallery(prev => ({...prev, page: newPage}));
     }
 
-    function handleGalleryEditBtn(item){
+    function handleGalleryEditBtn(item) {
         setEditGallery(item);
         const modalEl = document.getElementById("galleryModal");
         new Modal(modalEl).show();
     }
 
-    function addNewGallery(){
+    function addNewGallery() {
         setEditGallery(null);
         const modalEl = document.getElementById("galleryModal");
         new Modal(modalEl).show();
     }
 
-    function deleteGallery(){
+    async function deleteGallery() {
+        if (gallerySelectedIds.length === 0) {
+            alert("Please select at least one product to delete!");
+            return;
+        }
+        if (!window.confirm(`Are you sure you want to delete ${gallerySelectedIds.length} products?`)) return;
 
+        try {
+            await Promise.all(gallerySelectedIds.map(id => SettingGallery.remove(id)));
+            setGallerySelectedIds([]);                // reset selected
+            setFiltersGallery(prev => ({...prev}));   // reload list
+            alert("Deleted successfully!");
+        } catch (err) {
+            console.error("Delete error:", err);
+            alert("Delete failed!");
+        }
     }
 
     async function handleGallerySubmit(formData) {
@@ -117,6 +132,35 @@ export function HomeSetting() {
         }
     }
 
+    // eslint-disable-next-line no-lone-blocks
+    /** ==================== Collection ==================== */
+    const [collectionSelectedIds, setCollectionSelectedIds] = useState([]);
+    const [collectionEdit, setCollectionEdit] = useState(null);
+
+    const {
+        data: dataCollection,
+        setFilters: setFiltersCollection
+    } = useCrudList(SettingCollection, {page: 1, limit: 10});
+
+    async function handleEditCollectionBtn(editform) {
+        setCollectionEdit(editform);
+        const modalEl = document.getElementById("editCollection");
+        new Modal(modalEl).show();
+    }
+
+    async function submitFeatureCollection(formData) {
+        try {
+            console.log(formData);
+            let res = await SettingCollection.update(collectionEdit.id, formData);
+            console.log(res)
+            alert("Successful!");
+            setCollectionEdit(null);
+            setFiltersCollection(prev => ({...prev})); // reload list
+        } catch (err) {
+            console.error("Save error:", err);
+            alert("Save failed!");
+        }
+    }
 
     return (
         <div className="p-3 border" style={{width: "auto", maxHeight: "690px", overflowY: "auto"}}>
@@ -144,7 +188,7 @@ export function HomeSetting() {
                             <h5>Image:</h5>
                             <img src={item.img_url} alt={item.name} width="1000px"
                                  className="img-fluid rounded"
-                                 style={{maxHeight: "1000px", objectFit: "contain"}} />
+                                 style={{maxHeight: "1000px", objectFit: "contain"}}/>
                             <hr/>
                         </div>
                     )}
@@ -197,7 +241,7 @@ export function HomeSetting() {
                             <h5>Image:</h5>
                             <img src={item.img_url} alt={item.name} width="1000px"
                                  className="img-fluid rounded"
-                                 style={{maxHeight: "1000px", objectFit: "contain"}} />
+                                 style={{maxHeight: "1000px", objectFit: "contain"}}/>
                             <hr/>
                         </div>
                     )}
@@ -226,6 +270,53 @@ export function HomeSetting() {
                 />
 
                 <CustomPagination paging={pagingGallery} rowPerPageDisplay={false} onPageChange={onPageChangeGallery}/>
+            </div>
+
+            {/*    ===========================Feature collection=======================*/}
+            <div>
+                <hr/>
+                <h3>Feature Collection Image</h3>
+
+                <ModalCustom
+                    onSubmit={submitFeatureCollection}
+                    editData={collectionEdit}
+                    fields={[
+                        {name: "name", label: "Name", type: "text"},
+                        {name: "img_url", label: "Image Url", type: "text"},
+                        {
+                            name: "status", label: "Status", type: "select", options: [
+                                {label: "Active", value: "ACTIVE"},
+                                {label: "Inactive", value: "INACTIVE"}
+                            ]
+                        }
+                    ]}
+                    id={"editCollection"}
+                    title={"Edit Feature Collection Image"}
+                    width="1000px"
+                    renderthing={(item) => (
+                        <div>
+                            <hr/>
+                            <h5>Image:</h5>
+                            <img src={item.img_url} alt={item.name} width="1000px"
+                                 className="img-fluid rounded"
+                                 style={{maxHeight: "1000px", objectFit: "contain"}}/>
+                            <hr/>
+                        </div>
+                    )}
+                />
+
+                <CustomTable
+                    data={dataCollection}
+                    theadFields={['Name', 'Image', 'Status', 'Action']}
+                    renderRow={() => (
+                        <RenderImageSection
+                            data={dataCollection}
+                            selectedIds={collectionSelectedIds}
+                            setSelectedIds={setCollectionSelectedIds}
+                            onEdit={handleEditCollectionBtn}
+                        />
+                    )}
+                />
             </div>
         </div>
     );

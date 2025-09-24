@@ -164,11 +164,14 @@ export function Product() {
                         data.map((item) => (
                             <tr key={item.id}>
                                 <td><input type={"checkbox"} className={"form-check-input"}
+                                           checked={selectedIds.includes(item.id)} // 🔑 sync với state
                                            onChange={(e) => {
                                                if (e.target.checked) {
-                                                   setSelectedIds(prev => [...prev, item.id]);
+                                                   setSelectedIds((prev) => [...prev, item.id]);
                                                } else {
-                                                   setSelectedIds(prev => prev.filter(id => id !== item.id));
+                                                   setSelectedIds((prev) =>
+                                                       prev.filter((id) => id !== item.id)
+                                                   );
                                                }
                                            }}
                                 /></td>

@@ -18,7 +18,7 @@ class Category extends Model
     public $incrementing = false;
 
     protected $fillable = [
-        'name', 'description'
+        'name', 'description', 'img_url'
     ];
 
     public function products() : Category|HasMany

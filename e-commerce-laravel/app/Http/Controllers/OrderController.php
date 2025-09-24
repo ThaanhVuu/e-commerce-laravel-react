@@ -17,9 +17,41 @@ class OrderController extends Controller
     public function index(Request $request)
     {
         $limit = $request->query('limit', 10);
-        $orders = Order::with(['user', 'orderDetails.product'])->paginate($limit);
-        return response()->json($orders);
+
+        $query = Order::with(['profile', 'orderDetails.product']);
+
+        // 🔹 Filter theo status
+        $query->when($request->filled('status'), function ($q) use ($request) {
+            $q->where('status', $request->status);
+        });
+
+        // 🔹 Sort
+        if ($request->filled('sort_by') && $request->filled('sort_order')) {
+            // sort theo total_price
+            if ($request->sort_by === 'total_price') {
+                $qOrder = $request->sort_order === 'asc' ? 'asc' : 'desc';
+                $query->orderBy('total_price', $qOrder);
+            }
+            // sort theo created_at (newest / oldest)
+            elseif ($request->sort_by === 'created_at') {
+                $qOrder = $request->sort_order === 'asc' ? 'asc' : 'desc';
+                $query->orderBy('created_at', $qOrder);
+            }
+        } else {
+            // mặc định: newest
+            $query->orderBy('created_at', 'desc');
+        }
+
+        $query->when($request->search, function ($q, $search) {
+            $q->where(function ($q2) use ($search) {
+                $q2->where('id', 'LIKE', "%{$search}%")
+                    ->orWhereHas('profile', fn($u) => $u->where('full_name', 'LIKE', "%{$search}%"));
+            });
+        });
+
+        return response()->json($query->paginate($limit));
     }
+
 
     /**
      * Tạo order mới (kèm order details)

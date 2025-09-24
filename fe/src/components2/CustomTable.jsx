@@ -11,6 +11,7 @@ export function CustomTable({
                 <tr>
                     <th><input type={"checkbox"}
                                className={"form-check-input"}
+                               checked={isAllSelected}
                                onChange={(e) => {
                                    if (e.target.checked) {
                                        setSelectedIds(data.map(d => d.id));
@@ -19,8 +20,8 @@ export function CustomTable({
                                    }
                                }}
                     /></th>
-                    {theadFields.map((th) => (
-                        <th>{th}</th>
+                    {theadFields.map((th, idx) => (
+                        <th key={idx}>{th}</th>
                     ))}
                 </tr>
                 </thead>

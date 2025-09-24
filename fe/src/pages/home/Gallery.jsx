@@ -2,10 +2,24 @@ import "./Gallery.css";
 import {BsCaretLeftFill, BsCaretRightFill} from "react-icons/bs";
 import gallery1 from '../../assets/gallery/gallery1.png';
 import Slider from "react-slick";
+import {useEffect, useState} from "react";
+import {SettingCollection, SettingGallery} from "../../services/AllService";
 
 export function Gallery() {
     const sizeCarousel = 36;
     const colorCarousel = "#2a5996";
+
+    const [gallery, setGallery] = useState([]);
+    const [featureCollection, setFeatureCollection] = useState([]);
+
+    useEffect(() => {
+        (async () => {
+            let res = await SettingGallery.getAll();
+            setFeatureCollection(res.data.data);
+            let res2 = await SettingCollection.getAll();
+            setGallery(res2.data.data)
+        })()
+    }, []);
 
     const Prev = ({className, style, onClick}) => {
         // bỏ qua currentSlide và slideCount trong rest
@@ -41,19 +55,11 @@ export function Gallery() {
         prevArrow: <Prev/>,
         nextArrow: <Next/>,
         centerMode: true,
-        centerPadding: "40px",
+        centerPadding: "0px",
         slidesToShow: 3,
         autoplay: true,
         autoplaySpeed: 5000
     };
-
-    const galleries = Array(9).fill({
-        src: gallery1, alt: "gallery image 1", description: "A description about gallery"
-    })
-
-    const galleries2 = Array(4).fill({
-        src: gallery1, alt: "gallery image 1", description: "A description about gallery"
-    })
 
     return (
         <section id={"gallery"} className={"px-5 pt-2 pb-5"}>
@@ -66,11 +72,11 @@ export function Gallery() {
                 Gallery of 2025 | Autumn Festival
             </h2>
             <hr/>
-            <div className={""}>
+            <div className={"gallery"}>
                 <Slider {...settings}>
-                    {galleries.map((s, i) => (
-                        <div key={i} className="slide-item ms-5 ps-3">
-                            <img src={s.src} alt={s.alt}/>
+                    {gallery.map((s, i) => (
+                        <div key={i} className="slide-item ms-4">
+                            <img src={s.img_url} alt={s.name} className={"gallery-img"}/>
                         </div>
                     ))}
                 </Slider>
@@ -84,9 +90,9 @@ export function Gallery() {
                 Featured Collection
             </h3>
             <hr/>
-            <div className={"d-flex justify-content-around mt-5 gap-5"}>
-                {galleries2.map((s, i) => (
-                    <img key={i} width={"auto"} height={"550px"} src={s.src} alt={s.alt} className={""}/>
+            <div className={"d-flex justify-content-between mt-5 gap-1"}>
+                {featureCollection.map((s) => (
+                    <img key={s.id} width={"370px"} height={"500px"} style={{objectFit: "fill", borderRadius: "30px"}} src={s.img_url} alt={s.name}/>
                 ))}
             </div>
         </section>

@@ -6,23 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
 /**
- * @method static create(array $validated)
+ * @method static paginate(mixed $limit)
  */
-class GalleryImage extends Model
+class Collection extends Model
 {
-    //
-    protected $table = 'gallery_image'; // nếu table là Banner_Image thì nên để snake_case
+    protected $table = 'Feature_Collection';
 
-    protected $fillable = [
-        'name',
-        'img_url',
-        'status',
-    ];
-
-    public $incrementing = false; // vì id là UUID
     protected $keyType = 'string';
+    public $incrementing = false;
 
-    // Tự generate UUID khi tạo mới
+    protected $fillable = ['name', 'img_url', 'status'];
+
     protected static function boot(): void
     {
         parent::boot();
