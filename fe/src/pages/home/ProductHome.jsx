@@ -6,19 +6,24 @@ import {useEffect, useState} from "react";
 import {MdAddShoppingCart} from "react-icons/md";
 import {Footer} from "./Footer";
 import {CustomPagination} from "../../components2/CustomPagination";
+import {useLocation} from "react-router-dom";
 
 export function ProductHome() {
     const [categories, setCategories] = useState([]);
     const [toastMessage, setToastMessage] = useState(""); // ⭐ toast state
+    const location = useLocation();
+    const cateIdFromParent = location.state || ""
 
     useEffect(() => {
         (async () => {
             let res = await CategoryService.getAll();
             setCategories(res.data.data);
         })();
+        setFilters({...filters, category_id: cateIdFromParent})
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const {data, paging, filters, setFilters, loading, remove} =
+    const {data, paging, filters, setFilters, loading} =
         useCrudList(ProductService, {
             page: 1,
             limit: 20,

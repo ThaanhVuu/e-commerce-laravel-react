@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BannerHomeImageController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\GalleryImageController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderDetailController;
 use App\Http\Controllers\ProductController;
@@ -80,6 +81,7 @@ Route::prefix('v1.0')->group(function () {
         Route::delete('/order-details/{orderDetail}', [OrderDetailController::class, 'destroy']);
 
         Route::apiResource('banner-home-images', BannerHomeImageController::class);
+        Route::apiResource('gallery-images', GalleryImageController::class);
     });
 
     /**

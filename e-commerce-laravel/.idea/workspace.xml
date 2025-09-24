@@ -5,16 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8e1c7035-a268-450f-b736-12ee2043d30f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../fe/src/pages/auth/CreateProfile.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../fe/src/pages/manager/HomeSetting.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fe/src/components2/RenderImageSection.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/63efc190-ba0f-4707-9ee8-cacca4308101.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/63efc190-ba0f-4707-9ee8-cacca4308101.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/src/components2/CustomPagination.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/components2/CustomPagination.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/src/pages/home/Cart.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/pages/home/Cart.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/src/pages/home/OrderConfirm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/pages/home/OrderConfirm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fe/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fe/src/components2/CustomTable.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/components2/CustomTable.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fe/src/pages/home/Category.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/pages/home/Category.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fe/src/pages/home/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/pages/home/Home.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../fe/src/pages/home/ProductHome.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/pages/home/ProductHome.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fe/src/pages/manager/Category.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/pages/manager/Category.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fe/src/pages/manager/HomeSetting.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/pages/manager/HomeSetting.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fe/src/pages/manager/ImageProduct.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fe/src/pages/manager/Product.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/pages/manager/Product.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../fe/src/services/AllService.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/services/AllService.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -160,33 +164,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "PHP Script.php artisan serve.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.laravel_idea.run_console_parameters_ask": "true",
-    "git-widget-placeholder": "vu",
-    "ignore.virus.scanning.warn.message": "true",
-    "laravel_idea.dialogs.run_console_settings.width": "276",
-    "laravel_idea.dialogs.run_console_settings.x": "630",
-    "laravel_idea.dialogs.run_console_settings.y": "305",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;PHP Script.php artisan serve.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.laravel_idea.run_console_parameters_ask&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;vu&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;laravel_idea.dialogs.run_console_settings.width&quot;: &quot;276&quot;,
+    &quot;laravel_idea.dialogs.run_console_settings.x&quot;: &quot;630&quot;,
+    &quot;laravel_idea.dialogs.run_console_settings.y&quot;: &quot;305&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="php artisan serve" type="PhpLocalRunConfigurationType" factoryName="PHP Console" path="$PROJECT_DIR$/artisan" scriptParameters="serve">
       <CommandLine>
@@ -238,6 +242,7 @@
       <workItem from="1757553860177" duration="2568000" />
       <workItem from="1757994234293" duration="1431000" />
       <workItem from="1758106147570" duration="965000" />
+      <workItem from="1758539799536" duration="2791000" />
     </task>
     <servers />
   </component>

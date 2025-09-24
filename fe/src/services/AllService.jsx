@@ -26,8 +26,16 @@ export const OrderService = {
     create: (data) => api.post("/orders", data),
 }
 
-export const SettingHomeService = {
+export const SettingBanner = {
     getAll: (params = {}) => api.get("/banner-home-images", { params }),
     create: (data) => api.post("/banner-home-images", data),
     update: (id, data) => api.put(`/banner-home-images/${id}`, data),
+    remove: (id) => api.delete(`/banner-home-images/${id}`),
+}
+
+export const SettingGallery = {
+    getAll: (params = {}) => api.get("/gallery-images", { params }),
+    create: (data) => api.post("/gallery-images", data),
+    update: (id, data) => api.put(`/gallery-images/${id}`, data),
+    remove: (id) => api.delete(`/gallery-images/${id}`),
 }

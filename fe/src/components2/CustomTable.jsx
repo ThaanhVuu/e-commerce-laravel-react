@@ -1,6 +1,9 @@
 export function CustomTable({
-                                theadFields = [], data = [], renderRow, setSelectedIds
+                                theadFields = [], data = [], renderRow, selectedIds = [], setSelectedIds = () => {}
                             }) {
+
+    const isAllSelected = data.length > 0 && selectedIds.length === data.length;
+
     return (
         <div style={{ maxHeight: "400px", overflowY: "auto", overflowX: "auto" }}>
             <table className={"table table-striped rounded-2"}>
@@ -10,9 +13,9 @@ export function CustomTable({
                                className={"form-check-input"}
                                onChange={(e) => {
                                    if (e.target.checked) {
-                                       setSelectedIds(data.map(d => d.id)); // chọn hết
+                                       setSelectedIds(data.map(d => d.id));
                                    } else {
-                                       setSelectedIds([]); // bỏ hết
+                                       setSelectedIds([]);
                                    }
                                }}
                     /></th>

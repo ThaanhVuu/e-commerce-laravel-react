@@ -158,6 +158,8 @@ export function Product() {
                 <CustomTable
                     data={data}
                     theadFields={theadFields}
+                    selectedIds={selectedIds}
+                    setSelectedIds={setSelectedIds}
                     renderRow={() =>
                         data.map((item) => (
                             <tr key={item.id}>

@@ -66,6 +66,8 @@ export function Category() {
                 <CustomTable
                     theadFields={theadFields}
                     data={data}
+                    selectedIds={selectedIds}
+                    setSelectedIds={setSelectedIds}
                     renderRow={() => (
                         data.map(item => (
                             <tr key={item.id}>

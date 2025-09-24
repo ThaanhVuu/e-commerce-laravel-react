@@ -4,11 +4,13 @@ import "./Category.css";
 import {BsCaretLeftFill, BsCaretRightFill} from "react-icons/bs";
 import {useEffect, useState} from "react";
 import {CategoryService} from "../../services/AllService";
+import {useNavigate} from "react-router-dom";
 
 export function Category() {
     const sizeCarousel = 36;
     const colorCarousel = "#2a5996";
     const [categories, setCategories] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         (async () => {
@@ -53,6 +55,10 @@ export function Category() {
         nextArrow: <Next/>
     };
 
+    function pickCate(category){
+        navigate("/product", {state: {category: category.id}})
+    }
+
     return (
         <section id="category" className="p-5">
             <hr/>
@@ -68,7 +74,7 @@ export function Category() {
             <br/>
             <Slider {...settings}>
                 {categories.map((item, index) => (
-                    <div key={index} className="d-flex justify-content-center">
+                    <div key={index} className="d-flex justify-content-center" onClick={() => pickCate(item)}>
                         <div className="card" style={{height: "300px", width: "200px"}}>
                             <img
                                 src={item.img_url}
