@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\Product;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Throwable;
 
 class OrderController extends Controller
 {
@@ -44,8 +46,8 @@ class OrderController extends Controller
 
         $query->when($request->search, function ($q, $search) {
             $q->where(function ($q2) use ($search) {
-                $q2->where('id', 'LIKE', "%{$search}%")
-                    ->orWhereHas('profile', fn($u) => $u->where('full_name', 'LIKE', "%{$search}%"));
+                $q2->where('id', 'LIKE', "%$search%")
+                    ->orWhereHas('profile', fn($u) => $u->where('full_name', 'LIKE', "%$search%"));
             });
         });
 
@@ -55,7 +57,7 @@ class OrderController extends Controller
 
     /**
      * Tạo order mới (kèm order details)
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function store(Request $request)
     {
@@ -139,6 +141,41 @@ class OrderController extends Controller
         $order->delete();
         return response()->json([
             'message' => 'Order deleted successfully'
+        ]);
+    }
+
+    public function dashboardStats()
+    {
+        $month = Carbon::now()->month;
+        $year = Carbon::now()->year;
+
+        // Tổng doanh thu trong tháng
+        $totalRevenue = Order::whereYear('created_at', $year)
+            ->whereMonth('created_at', $month)
+            ->sum('total_price');
+
+        // Đếm đơn hàng theo trạng thái
+        $orderCounts = Order::select('status', DB::raw('COUNT(*) as total'))
+            ->whereYear('created_at', $year)
+            ->whereMonth('created_at', $month)
+            ->groupBy('status')
+            ->pluck('total', 'status');
+
+        $totalProducts = Product::count();
+        $lowStockProducts = Product::where('stock', '<', 10)
+            ->select('id', 'name', 'stock', 'price', 'status')
+            ->orderBy('stock', 'asc')
+            ->get();
+        // Trả về JSON
+        return response()->json([
+            'total_revenue' => $totalRevenue,
+            'total_product' => $totalProducts,
+            'low_stock_products' => $lowStockProducts,
+            'pending'   => $orderCounts['PENDING'] ?? 0,
+            'confirmed' => $orderCounts['CONFIRMED'] ?? 0,
+            'shipped'   => $orderCounts['SHIPPED'] ?? 0,
+            'completed' => $orderCounts['COMPLETED'] ?? 0,
+            'cancelled' => $orderCounts['CANCELLED'] ?? 0,
         ]);
     }
 }

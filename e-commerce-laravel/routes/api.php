@@ -34,6 +34,11 @@ Route::prefix('v1.0')->group(function () {
     Route::post('/orders', [OrderController::class, 'store']);
     Route::post('/orders/details', [OrderDetailController::class, 'store']);
     Route::post('/profile', [ProfileController::class, 'store']);
+
+
+    Route::apiResource('banner-home-images', BannerHomeImageController::class);
+    Route::apiResource('gallery-images', GalleryImageController::class);
+    Route::apiResource('collection', CollectionController::class);
     /**
      * Admin
      */
@@ -74,16 +79,13 @@ Route::prefix('v1.0')->group(function () {
         Route::get('/orders/{order}', [OrderController::class, 'show']);
         Route::put('/orders/{order}', [OrderController::class, 'update']);
         Route::delete('/orders/{order}', [OrderController::class, 'destroy']);
+        Route::get('/orders-stats', [OrderController::class, 'dashboardStats']);
 
         // Order details
         Route::get('/orders/{orderId}/details', [OrderDetailController::class, 'index']);
         Route::get('/order-details/{orderDetail}', [OrderDetailController::class, 'show']);
         Route::put('/order-details/{orderDetail}', [OrderDetailController::class, 'update']);
         Route::delete('/order-details/{orderDetail}', [OrderDetailController::class, 'destroy']);
-
-        Route::apiResource('banner-home-images', BannerHomeImageController::class);
-        Route::apiResource('gallery-images', GalleryImageController::class);
-        Route::apiResource('collection', CollectionController::class);
     });
 
     /**

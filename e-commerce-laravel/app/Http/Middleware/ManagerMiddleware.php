@@ -24,7 +24,6 @@ class ManagerMiddleware
         $jwtRole = $jwtUser['role']; // đây là string
 
         if ($jwtRole !== 'MANAGER') return response()->json(['message' => 'Forbidden: insufficient role'], 403);
-
         return $next($request);
     }
 }

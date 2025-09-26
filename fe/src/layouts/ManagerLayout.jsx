@@ -3,14 +3,18 @@ import {Outlet} from "react-router-dom";
 import {Sidebar} from "../components/Sidebar";
 import {LuLayoutDashboard} from "react-icons/lu";
 import {FaRegUser} from "react-icons/fa";
+import {MdOutlineCategory} from "react-icons/md";
+import {AiOutlineProduct} from "react-icons/ai";
+import {TbFileInvoice} from "react-icons/tb";
+import {FiSettings} from "react-icons/fi";
 
 export function ManagerLayout(){
     const menuOption = [
         { label: "Dashboard", path: "/manager/dashboard", icon: LuLayoutDashboard },
-        { label: "Category", path: "/manager/category", icon: FaRegUser },
-        { label: "Product", path: "/manager/product", icon: FaRegUser },
-        { label: "Order", path: "/manager/order", icon: FaRegUser },
-        {label: "Home Setting", path: "/manager/home-setting",  icon: FaRegUser}
+        { label: "Category", path: "/manager/category", icon: MdOutlineCategory },
+        { label: "Product", path: "/manager/product", icon: AiOutlineProduct },
+        { label: "Order", path: "/manager/order", icon: TbFileInvoice },
+        {label: "Home Setting", path: "/manager/home-setting",  icon: FiSettings}
     ];
 
     return (
