@@ -60,7 +60,7 @@ export function ManagerDashboard() {
                     <div className="card text-bg-dark shadow-sm h-100">
                         <div className="card-body">
                             <h5 className="card-title">📦 Tổng số sản phẩm</h5>
-                            <h3>{stats.total_products}</h3>
+                            <h3>{stats.total_product}</h3>
                         </div>
                     </div>
                 </div>
