@@ -23,14 +23,14 @@ class GalleryImage extends Model
     protected $keyType = 'string';
 
     // Tự generate UUID khi tạo mới
-    protected static function boot(): void
-    {
-        parent::boot();
-
-        static::creating(function ($model) {
-            if (empty($model->id)) {
-                $model->id = (string) Str::uuid();
-            }
-        });
-    }
+//    protected static function boot(): void
+//    {
+//        parent::boot();
+//
+//        static::creating(function ($model) {
+//            if (empty($model->id)) {
+//                $model->id = (string) Str::uuid();
+//            }
+//        });
+//    }
 }

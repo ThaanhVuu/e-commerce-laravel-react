@@ -1,16 +1,17 @@
 import {MaverickLogo} from "../../assets/MaverickLogo";
 import {IoBagOutline} from "react-icons/io5";
 import {CiSearch} from "react-icons/ci";
-import {LuCircleUser} from "react-icons/lu";
-import {useNavigate} from "react-router-dom";
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
+import {UserMenu} from "../../components2/UserMenu";
+import {AuthContext} from "../../contexts/AuthContext";
 
 
 export function HomeHeader(
-    {home="#home", category = "#category", product = "#product", gallery = "#gallery", aboutus = "#footer", cart= "#cart"}
+    {home="#home", category = "#category", gallery = "#gallery", aboutus = "#footer"}
 ) {
-    const navigate = useNavigate();
     const [cartCount, setCartCount] = useState()
+
+    const {profile, setProfile} = useContext(AuthContext);
 
     useEffect(() => {
         const updateCartCount = () => {
@@ -25,15 +26,17 @@ export function HomeHeader(
         window.addEventListener("storage", updateCartCount);
         window.addEventListener("cartUpdated", updateCartCount);
 
+        //check xem user có prof chưa, nếu chưa thì bị đẩy qua trang tạo profile
+        if (profile && !profile.profile) {
+            window.location.href = "/profile-create";
+        }
+
         return () => {
             window.removeEventListener("storage", updateCartCount);
             window.removeEventListener("cartUpdated", updateCartCount);
         };
-    }, []);
-    
-    const handleUserClick = () => {
-        navigate('/signin');
-    }
+    }, [profile]);
+
 
     return (
         <header
@@ -53,10 +56,11 @@ export function HomeHeader(
                 <a
                     className="m-0 text-dark text-decoration-none"
                     style={{fontSize: "14px", cursor: "pointer"}}
-                    onClick={(e) => {
-                        e.preventDefault();
-                        navigate("/product")
-                    }}
+                    // onClick={(e) => {
+                    //     e.preventDefault();
+                    //     navigate("/product")
+                    // }}
+                    href={"/product"}
                 >Product</a>
 
                 <a href={gallery} className="m-0 text-dark text-decoration-none"
@@ -65,7 +69,25 @@ export function HomeHeader(
                 <a href={aboutus} className="m-0 text-dark text-decoration-none" style={{fontSize: "14px"}}>About
                     us</a>
 
-                <a href={'#search'} className="m-0 text-dark text-decoration-none"><CiSearch size={18}/></a>
+                <div className="dropdown">
+                    <button
+                        className="btn btn-link m-0 text-dark text-decoration-none p-0"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                    >
+                        <CiSearch size={18} />
+                    </button>
+
+                    <div className="dropdown-menu p-2">
+                        <input
+                            type="text"
+                            className="form-control"
+                            placeholder="Search..."
+                            autoFocus
+                        />
+                    </div>
+                </div>
+
 
                 {/* Giỏ hàng + badge */}
                 <a href={"/cart"} className="m-0 text-dark text-decoration-none position-relative">
@@ -80,8 +102,7 @@ export function HomeHeader(
                     )}
                 </a>
 
-                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                <a onClick={handleUserClick} className="m-0 text-dark text-decoration-none" style={{cursor: "pointer"}}><LuCircleUser size={16}/></a>
+                <UserMenu profile={profile} setProfile={setProfile}/>
             </nav>
         </header>
     )

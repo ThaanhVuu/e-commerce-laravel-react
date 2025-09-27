@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -145,5 +146,29 @@ class UserController extends Controller
         }
 
         return response()->json($user); // trả JsonResponse chuẩn
+    }
+
+    public function stats(): JsonResponse
+    {
+        $totalProfile = Profile::count();
+        $totalUser = User::count();
+        $totalAdmin = User::where('role', 'ADMIN')->count();
+        $totalManager = User::where('role', 'MANAGER')->count();
+
+        return response()->json([
+            'total_user'    => $totalUser,
+            'total_profile' => $totalProfile,
+            'total_admin'   => $totalAdmin,
+            'total_manager' => $totalManager,
+        ]);
+    }
+
+    public function createAdmin()
+    {
+        User::create([
+            "username" => "admin",
+            "password" => Hash::make("admin"),
+            "role" => "ADMIN"
+        ]);
     }
 }

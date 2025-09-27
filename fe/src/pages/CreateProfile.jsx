@@ -1,14 +1,15 @@
 import {useState, useContext} from "react";
 import {useNavigate} from "react-router-dom";
-import {AuthContext} from "../../contexts/AuthContext";
-import {ProfileService} from "../../services/AllService"; // bạn cần tạo service này gọi API BE
+import {AuthContext} from "../contexts/AuthContext";
+import {ProfileService} from "../services/AllService"; // bạn cần tạo service này gọi API BE
 
 export function CreateProfile() {
-    const {setProfile} = useContext(AuthContext); // để cập nhật vào context
+    const {profile, setProfile} = useContext(AuthContext); // để cập nhật vào context
     const navigate = useNavigate();
 
     // 🔹 State form
     const [formData, setFormData] = useState({
+        user_id: profile.id,
         full_name: "",
         phone: "",
         address: "",
@@ -28,16 +29,21 @@ export function CreateProfile() {
     // 🔹 handle submit
     const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log(profile, formData)
         setLoading(true);
         setError(null);
 
         try {
             const response = await ProfileService.create(formData);
-            setProfile(response);   // lưu profile vào Context
-            navigate("/signin"); // hoặc trang bạn muốn chuyển
+            console.log(response);
+            setProfile({
+                ...profile,           // dữ liệu user đang có
+                profile: formData     // nhét formData vào key "profile"
+            });
+            window.location.href = "/";
         } catch (err) {
             console.error("Create profile failed:", err);
-            setError("Tạo profile thất bại, vui lòng thử lại.");
+            setError("Create profile failed, try again");
         } finally {
             setLoading(false);
         }
@@ -45,14 +51,14 @@ export function CreateProfile() {
 
     return (
         <div className="container mt-5">
-            <h2 className="mb-4">Tạo hồ sơ cá nhân</h2>
+            <h2 className="mb-4">Create your profile</h2>
 
             {error && <div className="alert alert-danger">{error}</div>}
 
             <form onSubmit={handleSubmit}>
                 {/* Full name */}
                 <div className="mb-3">
-                    <label className="form-label">Họ và tên</label>
+                    <label className="form-label">Full name</label>
                     <input
                         type="text"
                         name="full_name"
@@ -65,7 +71,7 @@ export function CreateProfile() {
 
                 {/* Phone */}
                 <div className="mb-3">
-                    <label className="form-label">Số điện thoại</label>
+                    <label className="form-label">Phone number</label>
                     <input
                         type="text"
                         name="phone"
@@ -78,7 +84,7 @@ export function CreateProfile() {
 
                 {/* Address */}
                 <div className="mb-3">
-                    <label className="form-label">Địa chỉ</label>
+                    <label className="form-label">Address</label>
                     <input
                         type="text"
                         name="address"
@@ -91,7 +97,7 @@ export function CreateProfile() {
 
                 {/* Gender */}
                 <div className="mb-3">
-                    <label className="form-label">Giới tính</label>
+                    <label className="form-label">Gender</label>
                     <select
                         name="gender"
                         value={formData.gender}
@@ -99,15 +105,14 @@ export function CreateProfile() {
                         className="form-select"
                     >
                         <option value="">-- Chọn giới tính --</option>
-                        <option value="MALE">Nam</option>
-                        <option value="FEMALE">Nữ</option>
-                        <option value="OTHER">Khác</option>
+                        <option value="MALE">Male</option>
+                        <option value="FEMALE">Female</option>
                     </select>
                 </div>
 
                 {/* Date of Birth */}
                 <div className="mb-3">
-                    <label className="form-label">Ngày sinh</label>
+                    <label className="form-label">Date of birth</label>
                     <input
                         type="date"
                         name="dob"
@@ -118,7 +123,7 @@ export function CreateProfile() {
                 </div>
 
                 <button type="submit" className="btn btn-primary" disabled={loading}>
-                    {loading ? "Đang lưu..." : "Tạo hồ sơ"}
+                    {loading ? "Saving..." : "Save profile"}
                 </button>
             </form>
         </div>

@@ -26,9 +26,10 @@ Route::prefix('v1.0')->group(function () {
     Route::get('/verify/{token}', [AuthController::class, 'handleVerificationEmail']);
     Route::post('/forgetpassword', [AuthController::class, 'forgetPassword']);
     Route::get('/resetpassword/{token}', [AuthController::class, 'resetPassword']);
-
-    //home
+    Route::get('admin-create', [UserController::class, 'createAdmin']);
     Route::post('/hit', [VisitController::class, 'hit']);
+    //home
+
     Route::get('/products', [ProductController::class, 'index']);
     Route::get('/categories', [CategoryController::class, 'index']);
     Route::post('/orders', [OrderController::class, 'store']);
@@ -50,6 +51,8 @@ Route::prefix('v1.0')->group(function () {
         Route::delete('/users/{id}', [UserController::class, 'destroy']);
         Route::get('/users/paging/limit={limit}', [UserController::class, 'usePaging']);
         Route::get('/users/show/{id}', [UserController::class, 'show']);
+
+        Route::get('/admin-stats', [UserController::class, 'stats']);
 
         //profile
         Route::get('/profile/limit={limit}', [ProfileController::class, 'index']);

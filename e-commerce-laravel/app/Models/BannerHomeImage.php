@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 
 class BannerHomeImage extends Model
 {
-    protected $table = 'banner_image'; // nếu table là Banner_Image thì nên để snake_case
+    protected $table = 'banner_images'; // nếu table là Banner_Image thì nên để snake_case
 
     protected $fillable = [
         'name',
@@ -19,14 +19,14 @@ class BannerHomeImage extends Model
     protected $keyType = 'string';
 
     // Tự generate UUID khi tạo mới
-    protected static function boot(): void
-    {
-        parent::boot();
-
-        static::creating(function ($model) {
-            if (empty($model->id)) {
-                $model->id = (string) Str::uuid();
-            }
-        });
-    }
+//    protected static function boot(): void
+//    {
+//        parent::boot();
+//
+//        static::creating(function ($model) {
+//            if (empty($model->id)) {
+//                $model->id = (string) Str::uuid();
+//            }
+//        });
+//    }
 }

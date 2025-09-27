@@ -10,21 +10,21 @@ use Illuminate\Support\Str;
  */
 class Collection extends Model
 {
-    protected $table = 'Feature_Collection';
+    protected $table = 'feature_collections';
 
     protected $keyType = 'string';
     public $incrementing = false;
 
     protected $fillable = ['name', 'img_url', 'status'];
 
-    protected static function boot(): void
-    {
-        parent::boot();
-
-        static::creating(function ($model) {
-            if (empty($model->id)) {
-                $model->id = (string) Str::uuid();
-            }
-        });
-    }
+//    protected static function boot(): void
+//    {
+//        parent::boot();
+//
+//        static::creating(function ($model) {
+//            if (empty($model->id)) {
+//                $model->id = (string) Str::uuid();
+//            }
+//        });
+//    }
 }

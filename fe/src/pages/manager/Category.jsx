@@ -7,6 +7,7 @@ import {FormatDate} from "../../utils/FormatDate";
 import {Modal} from "bootstrap";
 import {useState} from "react";
 import {ModalCustom} from "../../components/ModalCustom";
+import {toast} from "react-toastify";
 
 export function Category() {
     const [editData, setEditData] = useState(null);
@@ -35,10 +36,10 @@ export function Category() {
             if (editData) {
                 let res = await CategoryService.update(editData.id, formData);
                 console.log(formData);
-                alert(res.data.message);
+                toast.success(res.data.message);
             } else {
                 let res = await CategoryService.create(formData);
-                alert(res.message);
+                toast.error(res.message);
             }
             setEditData(null);
             setFilters(prev => ({...prev})); // refresh list
@@ -56,7 +57,7 @@ export function Category() {
 
     async function handleDelete(){
         if (selectedIds.length === 0) {
-            alert("Please select at least one category to delete!");
+            toast.warn("Please select at least one category to delete!");
             return;
         }
 
@@ -76,10 +77,10 @@ export function Category() {
             // reload list
             setFilters(prev => ({ ...prev }));
 
-            alert("Deleted successfully!");
+            toast.success("Deleted successfully!");
         } catch (err) {
             console.error("Delete error:", err);
-            alert("Delete failed!");
+            toast.error("Delete failed!");
         }
     }
 

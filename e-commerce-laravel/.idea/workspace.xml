@@ -5,7 +5,59 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8e1c7035-a268-450f-b736-12ee2043d30f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/database/migrations/2025_09_26_000002_create_profiles_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2025_09_26_000003_create_categories_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2025_09_26_000005_create_orders_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2025_09_26_000007_create_feedbacks_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2025_09_26_000008_create_banner_images_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2025_09_26_000009_create_feature_collections_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2025_09_26_000010_create_gallery_images_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fe/src/components2/UserMenu.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fe/src/pages/ProfileUser.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Document_eProject_Maverick.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../Document_eProject_Maverick.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AuthController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/BannerHomeImage.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/BannerHomeImage.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Collection.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Collection.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/GalleryImage.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/GalleryImage.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/AuthService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/AuthService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2025_08_24_102445_create_users_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2025_08_24_204027_create_black_tokens_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2025_09_04_081834_profiles.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2025_09_05_103037_create_categories_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2025_09_05_181601_create_products_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2025_09_26_000004_create_products_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2025_09_05_183203_order_create_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2025_09_05_183222_order_detail_create_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2025_09_26_000006_create_order_details_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2025_09_16_104515_create_visits_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2025_09_18_023924_alter_table_add_column_img_url_categories.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2025_09_19_000753_alter_table_add_column_img_url_product.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fe/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fe/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fe/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fe/src/components/home/HomeHeader.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/components/home/HomeHeader.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fe/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fe/src/layouts/AdminLayout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/layouts/AdminLayout.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fe/src/pages/admin/Dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/pages/admin/Dashboard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fe/src/pages/auth/CreateProfile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/pages/CreateProfile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fe/src/pages/auth/SignIn.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/pages/auth/SignIn.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fe/src/pages/home/Gallery.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/pages/home/Gallery.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fe/src/pages/home/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/pages/home/Home.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fe/src/pages/home/OrderConfirm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/pages/home/OrderConfirm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fe/src/pages/manager/Category.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/pages/manager/Category.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fe/src/pages/manager/HomeSetting.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/pages/manager/HomeSetting.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../fe/src/pages/manager/ManagerDashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/pages/manager/ManagerDashboard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fe/src/pages/manager/Order.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/pages/manager/Order.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fe/src/pages/manager/Product.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/pages/manager/Product.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fe/src/services/AllService.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/src/services/AllService.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../~$cument_eProject_Maverick.docx" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,33 +202,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "PHP Script.php artisan serve.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.laravel_idea.run_console_parameters_ask": "true",
-    "git-widget-placeholder": "vu",
-    "ignore.virus.scanning.warn.message": "true",
-    "laravel_idea.dialogs.run_console_settings.width": "276",
-    "laravel_idea.dialogs.run_console_settings.x": "630",
-    "laravel_idea.dialogs.run_console_settings.y": "305",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;PHP Script.php artisan serve.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.laravel_idea.run_console_parameters_ask&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;laravel_idea.dialogs.route_server_address_settings.width&quot;: &quot;569&quot;,
+    &quot;laravel_idea.dialogs.route_server_address_settings.x&quot;: &quot;483&quot;,
+    &quot;laravel_idea.dialogs.route_server_address_settings.y&quot;: &quot;312&quot;,
+    &quot;laravel_idea.dialogs.run_console_settings.width&quot;: &quot;276&quot;,
+    &quot;laravel_idea.dialogs.run_console_settings.x&quot;: &quot;630&quot;,
+    &quot;laravel_idea.dialogs.run_console_settings.y&quot;: &quot;305&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;,
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="php artisan serve" type="PhpLocalRunConfigurationType" factoryName="PHP Console" path="$PROJECT_DIR$/artisan" scriptParameters="serve">
       <CommandLine>
@@ -233,6 +289,9 @@
       <workItem from="1758714785434" duration="10137000" />
       <workItem from="1758735591654" duration="5143000" />
       <workItem from="1758814287927" duration="4996000" />
+      <workItem from="1758857655869" duration="4507000" />
+      <workItem from="1758883720879" duration="6407000" />
+      <workItem from="1758959831074" duration="6377000" />
     </task>
     <servers />
   </component>

@@ -1,13 +1,11 @@
 import React, {useState, useContext} from "react";
 import {AuthService} from "../../services/AuthService";
 import {LoginLayout} from "../../layouts/login/LoginLayout";
-import {useNavigate} from "react-router-dom";
 import {AuthContext} from "../../contexts/AuthContext";
 
 export function SignIn() {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
-    const navigate = useNavigate();
     const {setProfile} = useContext(AuthContext);  // dùng contexts
 
     async function handleSignIn(user) {
@@ -15,20 +13,18 @@ export function SignIn() {
         setError("");
 
         try {
-            await AuthService.signIn(user.username, user.password);
-
-            const response = await AuthService.myInfo();
-            setProfile(response); // lưu toàn cục
-            console.log(response)
-            if (response.role === "ADMIN") {
-                navigate("/admin");
-            } else if (response.role === "MANAGER") {
-                navigate("/manager");
+            let response = await AuthService.signIn(user.username, user.password);
+            setProfile(response.user); // lưu toàn cục
+            if (response.user.role === "ADMIN") {
+                window.location.href = "/admin";
+            } else if (response.user.role === "MANAGER") {
+                window.location.href = "/manager";
             } else {
-                navigate("/");
+                window.location.href = "/";
             }
         } catch (err) {
-            setError(err.error || "Lỗi kết nối tới server");
+            setError(err.error || "Can not connect to server");
+            console.log(err);
         } finally {
             setLoading(false);
         }

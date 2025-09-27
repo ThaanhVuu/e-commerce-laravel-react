@@ -1,6 +1,5 @@
 import "./Gallery.css";
 import {BsCaretLeftFill, BsCaretRightFill} from "react-icons/bs";
-import gallery1 from '../../assets/gallery/gallery1.png';
 import Slider from "react-slick";
 import {useEffect, useState} from "react";
 import {SettingCollection, SettingGallery} from "../../services/AllService";

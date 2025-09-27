@@ -8,7 +8,7 @@ export function AdminLayout(){
     const menuOption = [
         { label: "Dashboard", path: "/admin/dashboard", icon: LuLayoutDashboard },
         { label: "User", path: "/admin/user", icon: FaRegUser },
-        { label: "Profile", path: "/admin/profile", icon: FaRegUser },
+        { label: "ProfileUser", path: "/admin/profile", icon: FaRegUser },
     ];
 
     return (

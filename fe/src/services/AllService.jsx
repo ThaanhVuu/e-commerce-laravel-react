@@ -46,3 +46,7 @@ export const SettingCollection = {
     update: (id, data) => api.put(`/collection/${id}`, data),
     remove: (id) => api.delete(`/collection/${id}`),
 }
+
+export const UserService2 = {
+    stats: () => api.get('admin-stats')
+}

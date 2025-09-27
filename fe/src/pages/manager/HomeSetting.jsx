@@ -9,6 +9,7 @@ import {ModalCustom} from "../../components/ModalCustom";
 import {RenderImageSection} from "../../components2/RenderImageSection";
 import {useState} from "react";
 import {Modal} from "bootstrap";
+import {toast} from "react-toastify";
 
 export function HomeSetting() {
     // --- State Banner ---
@@ -42,7 +43,7 @@ export function HomeSetting() {
             } else {
                 await SettingBanner.create(formData);
             }
-            alert("Successful!");
+            toast.success("Successful!");
             setEditBanner(null);
             setFilters(prev => ({...prev})); // refresh list
         } catch (err) {
@@ -53,7 +54,7 @@ export function HomeSetting() {
     // --- Delete nhiều Banner ---
     async function handleBannerDeleteBtn() {
         if (selectedIds.length === 0) {
-            alert("Please select at least one product to delete!");
+            toast.warn("Please select at least one product to delete!");
             return;
         }
         if (!window.confirm(`Are you sure you want to delete ${selectedIds.length} products?`)) return;
@@ -62,10 +63,10 @@ export function HomeSetting() {
             await Promise.all(selectedIds.map(id => SettingBanner.remove(id)));
             setSelectedIds([]);                // reset selected
             setFilters(prev => ({...prev}));   // reload list
-            alert("Deleted successfully!");
+            toast.success("Deleted successfully!");
         } catch (err) {
             console.error("Delete error:", err);
-            alert("Delete failed!");
+            toast.warn("Delete failed!");
         }
     }
 
@@ -100,7 +101,7 @@ export function HomeSetting() {
 
     async function deleteGallery() {
         if (gallerySelectedIds.length === 0) {
-            alert("Please select at least one product to delete!");
+            toast.warn("Please select at least one product to delete!");
             return;
         }
         if (!window.confirm(`Are you sure you want to delete ${gallerySelectedIds.length} products?`)) return;
@@ -109,10 +110,10 @@ export function HomeSetting() {
             await Promise.all(gallerySelectedIds.map(id => SettingGallery.remove(id)));
             setGallerySelectedIds([]);                // reset selected
             setFiltersGallery(prev => ({...prev}));   // reload list
-            alert("Deleted successfully!");
+            toast.success("Deleted successfully!");
         } catch (err) {
             console.error("Delete error:", err);
-            alert("Delete failed!");
+            toast.error("Delete failed!");
         }
     }
 
@@ -123,12 +124,12 @@ export function HomeSetting() {
             } else {
                 await SettingGallery.create(formData);
             }
-            alert("Successful!");
+            toast.success("Successful!");
             setEditGallery(null);
             setFiltersGallery(prev => ({...prev})); // reload Gallery list
         } catch (err) {
             console.error("Save error:", err);
-            alert("Save failed!");
+            toast.error("Save failed!");
         }
     }
 
@@ -153,12 +154,12 @@ export function HomeSetting() {
             console.log(formData);
             let res = await SettingCollection.update(collectionEdit.id, formData);
             console.log(res)
-            alert("Successful!");
+            toast.success("Successful!");
             setCollectionEdit(null);
             setFiltersCollection(prev => ({...prev})); // reload list
         } catch (err) {
             console.error("Save error:", err);
-            alert("Save failed!");
+            toast.error("Save failed!");
         }
     }
 

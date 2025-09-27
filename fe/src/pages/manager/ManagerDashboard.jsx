@@ -50,7 +50,7 @@ export function ManagerDashboard() {
                     <div className="card text-bg-success shadow-sm h-100">
                         <div className="card-body">
                             <h5 className="card-title">💰 Doanh thu tháng</h5>
-                            <h3>{Number(stats.total_revenue).toLocaleString()} đ</h3>
+                            <h3>{Number(stats.total_revenue).toLocaleString()} $</h3>
                         </div>
                     </div>
                 </div>
@@ -150,7 +150,7 @@ export function ManagerDashboard() {
                             <h6 className="fw-bold">So sánh số lượng đơn hàng</h6>
                             <BarChart width={400} height={300} data={chartData}>
                                 <CartesianGrid strokeDasharray="3 3" />
-                                <XAxis dataKey="name" />
+                                <XAxis dataKey="name" interval={0}   tick={{ angle: -15, dy: 10 }} />
                                 <YAxis />
                                 <Tooltip />
                                 <Bar dataKey="value" fill="#007bff" />
@@ -191,7 +191,7 @@ export function ManagerDashboard() {
                                             >
                                                 {p.stock}
                                             </td>
-                                            <td>{Number(p.price).toLocaleString()} đ</td>
+                                            <td>{Number(p.price).toLocaleString()} $</td>
                                             <td>{p.status}</td>
                                         </tr>
                                     ))}

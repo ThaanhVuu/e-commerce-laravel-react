@@ -18,15 +18,15 @@ class User extends Model
     protected $fillable = ['id', 'username', 'password', 'role'];
     protected $hidden = ['password'];
 
-    protected static function boot(): void
-    {
-        parent::boot();
-        static::creating(function ($model) {
-            if (empty($model->id)) {
-                $model->id = (string) Str::uuid();
-            }
-        });
-    }
+//    protected static function boot(): void
+//    {
+//        parent::boot();
+//        static::creating(function ($model) {
+//            if (empty($model->id)) {
+//                $model->id = (string) Str::uuid();
+//            }
+//        });
+//    }
 
     public function profile(): HasOne
     {

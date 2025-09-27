@@ -4,7 +4,7 @@ import "slick-carousel/slick/slick-theme.css";
 import './Home.css';
 import {BsCaretLeftFill, BsCaretRightFill} from "react-icons/bs";
 import {useEffect, useState} from "react";
-import {SettingBanner, SettingHomeService} from "../../services/AllService";
+import {SettingBanner} from "../../services/AllService";
 
 export function Home() {
     const sizeCarousel = 36;

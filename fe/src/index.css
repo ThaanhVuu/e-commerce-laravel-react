@@ -6,3 +6,12 @@
 * {
     font-family: "Inter", sans-serif !important;
 }
+
+/* index.css */
+.custom-toast {
+    font-size: 18px;
+    min-width: 350px;
+}
+.custom-toast-body {
+    font-weight: bold;
+}

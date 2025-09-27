@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:mysql://localhost:3306/e_commerce_laravel</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="neondb@ep-round-truth-a1j5pugm-pooler.ap-southeast-1.aws.neon.tech" uuid="e895298a-f770-4220-bb67-ebc32c334333">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://ep-round-truth-a1j5pugm-pooler.ap-southeast-1.aws.neon.tech:5432/neondb</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

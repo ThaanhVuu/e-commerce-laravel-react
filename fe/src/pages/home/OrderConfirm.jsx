@@ -4,6 +4,7 @@ import {useLocation, useNavigate} from "react-router-dom";
 import { useState } from "react";
 import { OrderService, ProfileService } from "../../services/AllService";
 import {Footer} from "./Footer";
+import { toast } from "react-toastify";
 
 export function OrderConfirm() {
     const navigate = useNavigate();
@@ -59,9 +60,10 @@ export function OrderConfirm() {
             const resProfile = await ProfileService.create(profile);
             const newProfileId = resProfile.data.id;
             await createOrder(newProfileId);
-            alert("Order confirmed successfully!");
             localStorage.removeItem("cart");
-            navigate("/");
+            toast.success("Order confirmed successfully!", {
+                onClose: () => navigate("/")
+            });
         } catch (err) {
             alert("Something went wrong!");
             console.log(err);

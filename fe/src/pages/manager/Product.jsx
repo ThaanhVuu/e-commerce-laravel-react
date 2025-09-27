@@ -7,6 +7,7 @@ import {CustomPagination} from "../../components2/CustomPagination";
 import {FormatDate} from "../../utils/FormatDate";
 import {ModalCustom} from "../../components/ModalCustom";
 import {Modal} from "bootstrap";
+import {toast} from "react-toastify";
 
 export function Product() {
     const [categories, setCategories] = useState([]);
@@ -93,15 +94,15 @@ export function Product() {
         try {
             if (editData) {
                 let res = await ProductService.update(editData.id, formData);
-                alert(res.message);
+                toast.success(res.message);
             } else {
                 let res = await ProductService.create(formData);
-                alert(res.message);
+                toast.success(res.message);
             }
             setEditData(null);
             setFilters(prev => ({ ...prev })); // refresh list
         } catch (err) {
-            console.error("Save error:", err);
+            toast.error(err.data);
         }
     }
 
@@ -114,7 +115,7 @@ export function Product() {
 
     async function handleDeleteBtn() {
         if (selectedIds.length === 0) {
-            alert("Please select at least one product to delete!");
+            toast.warn("Please select at least one product to delete!");
             return;
         }
 
@@ -134,10 +135,9 @@ export function Product() {
             // reload list
             setFilters(prev => ({ ...prev }));
 
-            alert("Deleted successfully!");
+            toast.success("Deleted successfully!");
         } catch (err) {
-            console.error("Delete error:", err);
-            alert("Delete failed!");
+            toast.error("Delete failed!");
         }
     }
 

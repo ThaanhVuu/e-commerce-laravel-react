@@ -7,6 +7,7 @@ import {ActionBar} from "../../components2/ActionBar";
 import {useState} from "react";
 import {FormatDate} from "../../utils/FormatDate";
 import {Modal} from 'bootstrap';
+import {toast} from "react-toastify";
 
 export function Order() {
     const [editData, setEditData] = useState(null);
@@ -68,8 +69,8 @@ export function Order() {
 
     async function handleSave(formData) {
         try {
-            let res = await update(editData.id, formData);
-            console.log(res);
+            await update(editData.id, formData);
+            toast.success("Successful")
             setEditData(null); // reset sau khi lưu
         } catch (err) {
             console.error("Save error:", err);

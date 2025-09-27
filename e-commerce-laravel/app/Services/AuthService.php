@@ -36,7 +36,7 @@ class AuthService
      */
     public function checkUserSignIn(array $credentials) : ? User
     {
-        $user = User::where('username', $credentials['username'])->first();
+        $user = User::with('profile')->where('username', $credentials['username'])->first();
 
         if (!$user || !Hash::check($credentials['password'], $user->password)) {
             return null;
