@@ -4,12 +4,12 @@ import {CiSearch} from "react-icons/ci";
 import {useContext, useEffect, useState} from "react";
 import {UserMenu} from "../../components2/UserMenu";
 import {AuthContext} from "../../contexts/AuthContext";
-
+import "./HomeHeader.css";
 
 export function HomeHeader(
     {home="#home", category = "#category", gallery = "#gallery", aboutus = "#footer"}
 ) {
-    const [cartCount, setCartCount] = useState()
+    const [cartCount, setCartCount] = useState();
 
     const {profile, setProfile} = useContext(AuthContext);
 
@@ -26,7 +26,7 @@ export function HomeHeader(
         window.addEventListener("storage", updateCartCount);
         window.addEventListener("cartUpdated", updateCartCount);
 
-        //check xem user có prof chưa, nếu chưa thì bị đẩy qua trang tạo profile
+        // check xem user có profile chưa, nếu chưa thì bị đẩy qua trang tạo profile
         if (profile && !profile.profile) {
             window.location.href = "/profile-create";
         }
@@ -37,45 +37,36 @@ export function HomeHeader(
         };
     }, [profile]);
 
-
     return (
         <header
             className="d-flex gap-4 sticky-top justify-content-center align-items-center"
             style={{height: "44px", backgroundColor: "#feffec", width: "100%"}}
         >
             <nav className="d-flex gap-4 justify-content-center flex-grow-1 fw-bold">
-                <a href={home}><MaverickLogo height={24} width={107} accent={"#D62828"} primary={"#000000"}/></a>
+                {/* Logo */}
+                <a className="hoover" href={home}>
+                    <MaverickLogo height={24} width={107} accent={"#D62828"} primary={"#000000"}/>
+                </a>
 
-                <a href={home} className="m-0 text-dark text-decoration-none" style={{fontSize: "14px"}}>Home</a>
+                {/* Menu items */}
+                <a href={home} className="hoover m-0 text-dark text-decoration-none" style={{fontSize: "14px"}}>Home</a>
 
-                <a href={category} className="m-0 text-dark text-decoration-none"
-                   style={{fontSize: "14px"}}>Category</a>
-                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                <a href={category} className="hoover m-0 text-dark text-decoration-none" style={{fontSize: "14px"}}>Category</a>
 
-                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                <a
-                    className="m-0 text-dark text-decoration-none"
-                    style={{fontSize: "14px", cursor: "pointer"}}
-                    // onClick={(e) => {
-                    //     e.preventDefault();
-                    //     navigate("/product")
-                    // }}
-                    href={"/product"}
-                >Product</a>
+                <a href="/product" className="hoover m-0 text-dark text-decoration-none" style={{fontSize: "14px"}}>Product</a>
 
-                <a href={gallery} className="m-0 text-dark text-decoration-none"
-                   style={{fontSize: "14px"}}>Gallery</a>
+                <a href={gallery} className="hoover m-0 text-dark text-decoration-none" style={{fontSize: "14px"}}>Gallery</a>
 
-                <a href={aboutus} className="m-0 text-dark text-decoration-none" style={{fontSize: "14px"}}>About
-                    us</a>
+                <a href={aboutus} className="hoover m-0 text-dark text-decoration-none" style={{fontSize: "14px"}}>About us</a>
 
+                {/* Search dropdown */}
                 <div className="dropdown">
                     <button
                         className="btn btn-link m-0 text-dark text-decoration-none p-0"
                         data-bs-toggle="dropdown"
                         aria-expanded="false"
                     >
-                        <CiSearch size={18} />
+                        <CiSearch size={18}/>
                     </button>
 
                     <div className="dropdown-menu p-2">
@@ -88,20 +79,20 @@ export function HomeHeader(
                     </div>
                 </div>
 
-
-                {/* Giỏ hàng + badge */}
-                <a href={"/cart"} className="m-0 text-dark text-decoration-none position-relative">
+                {/* Cart */}
+                <a href="/cart" className="hoover m-0 text-dark text-decoration-none position-relative">
                     <IoBagOutline size={18}/>
                     {cartCount > 0 && (
                         <span
                             className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
                             style={{fontSize: "10px"}}
                         >
-                             {cartCount}
+                            {cartCount}
                         </span>
                     )}
                 </a>
 
+                {/* User menu */}
                 <UserMenu profile={profile} setProfile={setProfile}/>
             </nav>
         </header>

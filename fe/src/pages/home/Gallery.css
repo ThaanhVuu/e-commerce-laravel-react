@@ -1,4 +1,4 @@
-.slide-item img {
+.gallery .slide-item img {
     width: auto;
     height: 600px; /* chiều cao tuỳ chỉnh */
     object-fit: cover;
@@ -7,40 +7,52 @@
 }
 
 /* slide trung tâm */
-.slick-center .slide-item img {
+.gallery .slick-center .slide-item img {
     transform: scale(1);
     opacity: 1;
 }
 
 /* slide bên cạnh */
-.slide-item img {
+.gallery .slide-item img {
     transform: scale(0.8);
     opacity: 0.6;
 }
 
-.slick-prev {
+.gallery .slick-prev {
     z-index: 999;
     left: 80px;   /* đẩy sang ngoài slider */
 }
-.slick-next {
+.gallery .slick-next {
     z-index: 999;
     right: 80px;
 }
 
-.slick-prev:before,
-.slick-next:before {
+.gallery .slick-prev:before,
+.gallery .slick-next:before {
     display: none;
 }
 
-#gallery{
+#gallery {
     background-color: #feffec;
     scroll-margin-top: 44px;
 }
 
-.gallery-img {
-    height: 600px !important;
-    width: 480px !important;
-    display: block !important;
+.gallery .gallery-img {
+    height: 600px;
+    width: 480px;
+    display: block;
     border-radius: 30px;
-    object-fit: fill !important; /* ép vừa khung, co/dãn ảnh */
+    object-fit: fill; /* ép vừa khung, co/dãn ảnh */
+}
+
+.collection img{
+    width: 370px !important;
+    height: 500px !important;
+    object-fit: fill;
+    border-radius: 20px;
+    margin-right: 10px;
+}
+
+.collection{
+    margin-left: 15px;
 }

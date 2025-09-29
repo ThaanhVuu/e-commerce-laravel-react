@@ -24,6 +24,22 @@ class CollectionController extends Controller
     public function store(Request $request)
     {
         //
+        $validate = $request->validate([
+            'name' => 'sometimes|required|string|max:255',
+            'img_url' => 'sometimes|required|string|max:1000',
+            'status' => 'sometimes|required|in:ACTIVE,INACTIVE',
+        ]);
+
+        $collection = Collection::create([
+            'name' => $validate['name'],
+            'img_url' => $validate['img_url'],
+            'status' => $validate['status']
+        ]);
+
+        return response()->json([
+            'message' => 'Collection images created successfully',
+            'data' => $collection,
+        ]);
     }
 
     /**
@@ -41,16 +57,16 @@ class CollectionController extends Controller
     {
         //
         $validate = $request->validate([
-            'name'    => 'sometimes|required|string|max:255',
+            'name' => 'sometimes|required|string|max:255',
             'img_url' => 'sometimes|required|string|max:1000',
-            'status'  => 'sometimes|required|in:ACTIVE,INACTIVE',
+            'status' => 'sometimes|required|in:ACTIVE,INACTIVE',
         ]);
 
         $collection->update($validate);
 
         return response()->json([
             'message' => 'Collection images updated successfully',
-            'data'    => $collection,
+            'data' => $collection,
         ]);
     }
 
@@ -59,6 +75,10 @@ class CollectionController extends Controller
      */
     public function destroy(Collection $collection)
     {
+        $collection->delete();
         //
+        return response()->json([
+            'message' => 'Collection images deleted successfully',
+        ]);
     }
 }

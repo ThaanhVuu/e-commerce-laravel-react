@@ -39,7 +39,7 @@ class ProductController extends Controller
         }
 
         // Pagination
-        $limit = (int) $request->get('limit', 10);
+        $limit = (int)$request->get('limit', 10);
         $products = $query->paginate($limit);
 
         return response()->json($products);
@@ -52,18 +52,19 @@ class ProductController extends Controller
     {
         $validated = $request->validate([
             'category_id' => 'required|exists:categories,id',
-            'name'        => 'required|string|max:150',
+            'name' => 'required|string|max:150',
             'description' => 'nullable|string',
-            'price'       => 'required|numeric|min:0',
-            'stock'       => 'integer|min:0',
-            'status'      => 'in:ACTIVE,INACTIVE',
+            'price' => 'required|numeric|min:0',
+            'stock' => 'integer|min:0',
+            'status' => 'in:ACTIVE,INACTIVE',
+            'img_url' => 'sometimes|nullable|string|max:2048'
         ]);
 
         $product = Product::create($validated);
 
         return response()->json([
             'message' => 'Product created successfully',
-            'data'    => $product->load('category')
+            'data' => $product->load('category')
         ], 201);
     }
 
@@ -82,18 +83,19 @@ class ProductController extends Controller
     {
         $validated = $request->validate([
             'category_id' => 'sometimes|required|exists:categories,id',
-            'name'        => 'sometimes|required|string|max:150',
+            'name' => 'sometimes|required|string|max:150',
             'description' => 'nullable|string',
-            'price'       => 'sometimes|required|numeric|min:0',
-            'stock'       => 'integer|min:0',
-            'status'      => 'in:ACTIVE,INACTIVE',
+            'price' => 'sometimes|required|numeric|min:0',
+            'stock' => 'integer|min:0',
+            'status' => 'in:ACTIVE,INACTIVE',
+            'img_url' => 'nullable|string|max:2048',
         ]);
 
         $product->update($validated);
 
         return response()->json([
             'message' => 'Product updated successfully',
-            'data'    => $product->load('category')
+            'data' => $product->load('category')
         ]);
     }
 

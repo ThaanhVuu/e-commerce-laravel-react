@@ -104,7 +104,10 @@ export function Cart() {
                                     {/* Thông tin sản phẩm */}
                                     <div className="flex-grow-1 px-3">
                                         <h6>{item.name}</h6>
-                                        <p className="mb-1">Price: {item.price.toLocaleString()}$</p>
+                                        <p className="mb-1">Price: {Number(item.price).toLocaleString('en-US', {
+                                            style: "currency",
+                                            currency: "USD"
+                                        })}</p>
                                         <p className="mb-1">Category: {item.category}</p>
 
                                         {/* Nút tăng giảm số lượng */}
@@ -145,10 +148,16 @@ export function Cart() {
                         <div className="col-md-4">
                             <div className="border rounded p-3">
                                 <h6>Order Detail</h6>
-                                <p>Total price: {totalPrice.toLocaleString()}$</p>
+                                <p>Total price: {Number(totalPrice).toLocaleString('en-US', {
+                                    style: "currency",
+                                    currency: "USD"
+                                })}</p>
                                 <hr/>
                                 <p>
-                                    <strong>Payable: {totalPrice.toLocaleString()}$</strong>
+                                    <strong>Payable: {Number(totalPrice).toLocaleString('en-US', {
+                                        style: "currency",
+                                        currency: "USD"
+                                    })}</strong>
                                 </p>
                                 <button
                                     className="btn btn-warning w-100"

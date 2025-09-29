@@ -146,7 +146,9 @@ export function ProductHome() {
                 {/* LIST PRODUCT */}
                 {loading && <p>Loading...</p>}
                 <div className={"row"}>
-                    {data.map(product => (
+                    {data
+                        .filter(item => item.status === "ACTIVE")
+                        .map(product => (
                         product.status === "ACTIVE" && (
                             <div className={"col-3 my-2"} key={product.id} style={{height: "450px"}}>
                                 <div className={"card border rounded-3 pt-3 mb-4 h-100"}>
@@ -163,7 +165,10 @@ export function ProductHome() {
                                             <h5 className={"card-title"}>{product.name}</h5>
                                             <span className={"card-text text-muted"}>{product.category.name}</span>
                                             <span
-                                                className={"card-text text-danger"}>{Number(product.price).toLocaleString()}$</span>
+                                                className={"card-text text-danger"}>{Number(product.price).toLocaleString('en-US', {
+                                                style: "currency",
+                                                currency: "USD"
+                                            })}</span>
                                             <span className={"card-text text-dark"}>{product.description}</span>
                                             {product.stock === 0 && (<span>Out of stock</span>)}
                                         </div>

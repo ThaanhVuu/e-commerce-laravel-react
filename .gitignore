@@ -1,4 +1,5 @@
 # Laravel
+/.idea/
 **/vendor
 **/node_modules
 /public/hot

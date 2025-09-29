@@ -8,6 +8,7 @@ import {FormatDate} from "../../utils/FormatDate";
 import {ModalCustom} from "../../components/ModalCustom";
 import {Modal} from "bootstrap";
 import {toast} from "react-toastify";
+import Swal from "sweetalert2";
 
 export function Product() {
     const [categories, setCategories] = useState([]);
@@ -22,7 +23,7 @@ export function Product() {
         })();
     }, []);
 
-    const {data, filters, setFilters, paging}
+    const {data, filters, setFilters, paging, update, create, remove}
         = useCrudList(ProductService, {
         page: 1,
         limit: 10,
@@ -53,17 +54,23 @@ export function Product() {
     ]
 
     const productFields = [
-        { name: "name", label: "Name", type: "text" },
-        { name: "category_id", label: "Category", type: "select", options: categories.map(c => ({ label: c.name, value: c.id })) },
-        { name: "price", label: "Price", type: "number" },
-        { name: "stock", label: "Stock", type: "number" },
-        { name: "status", label: "Status", type: "select", options: [
-                { label: "Active", value: "ACTIVE" },
-                { label: "Inactive", value: "INACTIVE" }
+        {name: "name", label: "Name", type: "text"},
+        {
+            name: "category_id",
+            label: "Category",
+            type: "select",
+            options: categories.map(c => ({label: c.name, value: c.id}))
+        },
+        {name: "price", label: "Price", type: "number"},
+        {name: "stock", label: "Stock", type: "number"},
+        {
+            name: "status", label: "Status", type: "select", options: [
+                {label: "Active", value: "ACTIVE"},
+                {label: "Inactive", value: "INACTIVE"}
             ]
         },
-        { name: "img_url", label: "Image URL", type: "text" },
-        { name: "description", label: "Description", type: "text" }
+        {name: "img_url", label: "Image URL", type: "text"},
+        {name: "description", label: "Description", type: "text"}
     ];
 
 
@@ -93,20 +100,21 @@ export function Product() {
     async function handleSave(formData) {
         try {
             if (editData) {
-                let res = await ProductService.update(editData.id, formData);
-                toast.success(res.message);
+                let res = await update(editData.id, formData);
+                toast.success(res.data.message);
             } else {
-                let res = await ProductService.create(formData);
-                toast.success(res.message);
+                let res = await create(formData);
+                toast.success(res.data.message);
             }
             setEditData(null);
-            setFilters(prev => ({ ...prev })); // refresh list
+            setFilters(prev => ({...prev})); // refresh list
         } catch (err) {
-            toast.error(err.data);
+            console.log(err)
+            toast.error(err.response.data.message);
         }
     }
 
-    function handleAddBtn(){
+    function handleAddBtn() {
         setEditData(null);
         const modalEl = document.getElementById("productModal");
         const modal = new Modal(modalEl);
@@ -119,25 +127,34 @@ export function Product() {
             return;
         }
 
-        if (!window.confirm(`Are you sure you want to delete ${selectedIds.length} products?`)) {
-            return;
-        }
+        const result = await Swal.fire({
+            title: "Are you sure?",
+            text: `You are about to delete ${selectedIds.length} categories`,
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#3085d6",
+            confirmButtonText: "Yes, delete it!",
+            cancelButtonText: "Cancel"
+        });
+
+        if (!result) return;
 
         try {
             // chạy song song tất cả API delete
             await Promise.all(
-                selectedIds.map(id => ProductService.remove(id))
+                selectedIds.map(id => remove(id))
             );
 
             // reset danh sách chọn
             setSelectedIds([]);
 
             // reload list
-            setFilters(prev => ({ ...prev }));
+            setFilters(prev => ({...prev}));
 
             toast.success("Deleted successfully!");
         } catch (err) {
-            toast.error("Delete failed!");
+            toast.error(err.data.response.message);
         }
     }
 
@@ -177,7 +194,10 @@ export function Product() {
                                 /></td>
                                 <td>{item.name}</td>
                                 <td>{item.category?.name}</td>
-                                <td>{item.price}</td>
+                                <td>{Number(item.price).toLocaleString('en-US', {
+                                    style: "currency",
+                                    currency: "USD"
+                                })}</td>
                                 <td>{item.stock}</td>
                                 <td>{item.status}</td>
                                 <td>
@@ -192,13 +212,13 @@ export function Product() {
                                 <td>{FormatDate(item.created_at)}</td>
                                 <td>{FormatDate(item.updated_at)}</td>
                                 <td>
-                                    <button className="btn btn-primary btn-sm me-2" onClick={() => handleEditBtn(item)}>Edit</button>
+                                    <button className="btn btn-primary btn-sm me-2"
+                                            onClick={() => handleEditBtn(item)}>Edit
+                                    </button>
                                 </td>
                             </tr>
-                        ))
-                    }
+                        ))}
                 />
-
 
                 <CustomPagination
                     paging={paging}

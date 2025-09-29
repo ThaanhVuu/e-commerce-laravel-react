@@ -1,0 +1,8 @@
+.hoover {
+    color: black;              /* màu chữ mặc định */
+    transition: color 0.3s ease; /* thời gian và hiệu ứng chuyển màu */
+}
+
+.hoover:hover {
+    color: #bf5600 !important;             /* màu khi hover */
+}

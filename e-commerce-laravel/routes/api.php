@@ -28,8 +28,8 @@ Route::prefix('v1.0')->group(function () {
     Route::get('/resetpassword/{token}', [AuthController::class, 'resetPassword']);
     Route::get('admin-create', [UserController::class, 'createAdmin']);
     Route::post('/hit', [VisitController::class, 'hit']);
-    //home
 
+    //home
     Route::get('/products', [ProductController::class, 'index']);
     Route::get('/categories', [CategoryController::class, 'index']);
     Route::post('/orders', [OrderController::class, 'store']);
@@ -37,9 +37,10 @@ Route::prefix('v1.0')->group(function () {
     Route::post('/profile', [ProfileController::class, 'store']);
 
 
-    Route::apiResource('banner-home-images', BannerHomeImageController::class);
-    Route::apiResource('gallery-images', GalleryImageController::class);
-    Route::apiResource('collection', CollectionController::class);
+    Route::get('banner-home-images', [BannerHomeImageController::class, 'index']);
+    Route::get('gallery-images', [GalleryImageController::class, 'index']);
+    Route::get('collection', [CollectionController::class, 'index']);
+
     /**
      * Admin
      */
@@ -89,6 +90,19 @@ Route::prefix('v1.0')->group(function () {
         Route::get('/order-details/{orderDetail}', [OrderDetailController::class, 'show']);
         Route::put('/order-details/{orderDetail}', [OrderDetailController::class, 'update']);
         Route::delete('/order-details/{orderDetail}', [OrderDetailController::class, 'destroy']);
+
+        //Home setting
+        Route::post('banner-home-images', [BannerHomeImageController::class, 'store']);  // thêm mới
+        Route::put('banner-home-images/{bannerHomeImage}', [BannerHomeImageController::class, 'update']); // cập nhật
+        Route::delete('banner-home-images/{bannerHomeImage}', [BannerHomeImageController::class, 'destroy']); // xóa
+
+        Route::post('gallery-images', [GalleryImageController::class, 'store']);
+        Route::put('gallery-images/{galleryImage}', [GalleryImageController::class, 'update']);
+        Route::delete('gallery-images/{galleryImage}', [GalleryImageController::class, 'destroy']);
+
+        Route::post('/collection', [CollectionController::class, 'store']);      // Tạo mới
+        Route::put('/collection/{collection}', [CollectionController::class, 'update']); // Cập nhật
+        Route::delete('/collection/{collection}', [CollectionController::class, 'destroy']); // Xóa
     });
 
     /**
@@ -99,5 +113,6 @@ Route::prefix('v1.0')->group(function () {
         Route::post('/signout', [AuthController::class, 'signOut']);
         // user
         Route::get('/me', [UserController::class, 'profile']);
+        Route::get('/my-orders', [OrderController::class, 'getOrderWithProfile']);
     });
 });

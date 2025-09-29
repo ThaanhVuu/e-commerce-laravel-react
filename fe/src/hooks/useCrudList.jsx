@@ -29,18 +29,21 @@ export function useCrudList(service, defaultParams = { page: 1, limit: 10 }) {
     const refresh = () => loadData();
 
     const remove = async (id) => {
-        await service.remove(id);
+        let res = await service.remove(id);
         await loadData();
+        return res;
     };
 
     const create = async (payload) => {
-        await service.create(payload);
+        let res = await service.create(payload);
         await loadData();
+        return res;
     };
 
     const update = async (id, payload) => {
-        await service.update(id, payload);
+        let res = await service.update(id, payload);
         await loadData();
+        return res;
     };
 
     return {

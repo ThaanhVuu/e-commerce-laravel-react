@@ -24,6 +24,7 @@ export const OrderService = {
     update: (id, data) => api.put(`/orders/${id}`, data),
     remove: (id) => api.delete(`/orders/${id}`),
     getStats: () => api.get('/orders-stats'),
+    getMyOrders: () => api.get('/my-orders'),
 }
 
 export const SettingBanner = {

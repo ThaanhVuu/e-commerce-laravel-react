@@ -1,3 +1,5 @@
+// noinspection JSDeprecatedSymbols
+
 import {ModalCustom} from "../../components/ModalCustom";
 import {CustomTable} from "../../components2/CustomTable";
 import {CustomPagination} from "../../components2/CustomPagination";
@@ -48,7 +50,8 @@ export function Order() {
         {label: "Pending", value: "PENDING"},
         {label: "Confirmed", value: "CONFIRMED"},
         {label: "Shipping", value: "SHIPPED"},
-        {label: "Completed", value: "COMPLETED"}
+        {label: "Completed", value: "COMPLETED"},
+        {label: "Cancelled", value: "CANCELLED"}
     ];
 
     function onPageChange(newPage) {
@@ -73,6 +76,7 @@ export function Order() {
             toast.success("Successful")
             setEditData(null); // reset sau khi lưu
         } catch (err) {
+            toast.error(err.response.data.message);
             console.error("Save error:", err);
         }
     }

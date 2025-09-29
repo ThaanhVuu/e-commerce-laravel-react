@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 
 /**
  * @method static paginate(mixed $limit)
+ * @method static create(array $array)
  */
 class Collection extends Model
 {

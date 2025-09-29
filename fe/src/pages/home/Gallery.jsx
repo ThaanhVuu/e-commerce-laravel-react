@@ -1,3 +1,5 @@
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import "./Gallery.css";
 import {BsCaretLeftFill, BsCaretRightFill} from "react-icons/bs";
 import Slider from "react-slick";
@@ -16,7 +18,8 @@ export function Gallery() {
             let res = await SettingGallery.getAll();
             setFeatureCollection(res.data.data);
             let res2 = await SettingCollection.getAll();
-            setGallery(res2.data.data)
+            setGallery(res2.data.data);
+            console.log(res.data.data.length)
         })()
     }, []);
 
@@ -57,8 +60,16 @@ export function Gallery() {
         centerPadding: "0px",
         slidesToShow: 3,
         autoplay: true,
-        autoplaySpeed: 5000
+        autoplaySpeed: 2000
     };
+
+    const setting2 = {
+        arrows: false,
+        infinite: true,
+        slidesToShow: 4,
+        autoplay: true,
+        autoplaySpeed: 2000,
+    }
 
     return (
         <section id={"gallery"} className={"px-5 pt-2 pb-5"}>
@@ -89,10 +100,19 @@ export function Gallery() {
                 Featured Collection
             </h3>
             <hr/>
-            <div className={"d-flex justify-content-between mt-5 gap-1"}>
-                {featureCollection.map((s) => (
-                    <img key={s.id} width={"370px"} height={"500px"} style={{objectFit: "fill", borderRadius: "30px"}} src={s.img_url} alt={s.name}/>
-                ))}
+            {/*<div className={"collection d-flex justify-content-between mt-5 gap-1"}>*/}
+            {/*    {featureCollection.map((s) => (*/}
+            {/*        <img key={s.id} width={"370px"} height={"500px"} style={{objectFit: "fill", borderRadius: "30px"}} src={s.img_url} alt={s.name}/>*/}
+            {/*    ))}*/}
+            {/*</div>*/}
+
+            <div className={"collection"}>
+                <Slider {...setting2}>
+                    {featureCollection.map((s) => (
+                        <img key={s.id} src={s.img_url} alt={s.name}/>
+                    ))}
+
+                </Slider>
             </div>
         </section>
     );

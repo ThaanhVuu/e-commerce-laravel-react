@@ -40,20 +40,9 @@ export const AuthService = {
     },
 
     // Reset password
-    resetPassword: async (password, token) => {
+    resetPassword: async (password) => {
         try {
-            // Token nếu có trong cookie thì không cần header Authorization
             const response = await api.post("/resetpassword", { password });
-            return response.data;
-        } catch (error) {
-            throw error.response ? error.response.data : error;
-        }
-    },
-
-    // Lấy thông tin user đang đăng nhập
-    myInfo: async () => {
-        try {
-            const response = await api.get("/me"); // cookie sẽ tự gửi
             return response.data;
         } catch (error) {
             throw error.response ? error.response.data : error;

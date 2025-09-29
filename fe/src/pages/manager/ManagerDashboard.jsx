@@ -41,7 +41,7 @@ export function ManagerDashboard() {
 
     return (
         <div className="container mt-4" style={{ height: "660px", overflowY: "auto" }}>
-            <h3 className="fw-bold">📊 Manager Dashboard</h3>
+            <h4 className="fw-bold">📊 Manager Dashboard</h4>
 
             {/* KPI Cards */}
             <div className="row my-3">

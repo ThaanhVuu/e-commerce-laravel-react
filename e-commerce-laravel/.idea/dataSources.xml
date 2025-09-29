@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="e_commerce_laravel@localhost" uuid="63efc190-ba0f-4707-9ee8-cacca4308101">
+    <data-source source="LOCAL" name="e_commerce2@localhost" uuid="63efc190-ba0f-4707-9ee8-cacca4308101">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/e_commerce_laravel</jdbc-url>
+      <jdbc-url>jdbc:mysql://localhost:3306/e_commerce2</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
     <data-source source="LOCAL" name="neondb@ep-round-truth-a1j5pugm-pooler.ap-southeast-1.aws.neon.tech" uuid="e895298a-f770-4220-bb67-ebc32c334333">

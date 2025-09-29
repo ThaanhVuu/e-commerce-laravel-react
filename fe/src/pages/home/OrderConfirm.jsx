@@ -1,49 +1,51 @@
-import { HomeHeader } from "../../components/home/HomeHeader";
-import { CiShoppingCart } from "react-icons/ci";
+import {HomeHeader} from "../../components/home/HomeHeader";
+import {CiShoppingCart} from "react-icons/ci";
 import {useLocation, useNavigate} from "react-router-dom";
-import { useState } from "react";
-import { OrderService, ProfileService } from "../../services/AllService";
+import {useContext, useState} from "react";
+import {OrderService, ProfileService} from "../../services/AllService";
 import {Footer} from "./Footer";
-import { toast } from "react-toastify";
+import {toast} from "react-toastify";
+import {AuthContext} from "../../contexts/AuthContext";
 
 export function OrderConfirm() {
     const navigate = useNavigate();
     const location = useLocation();
     const payable = location.state?.payable || 0;
+    const {profile} = useContext(AuthContext);
 
     const saved = localStorage.getItem("cart");
     const cartItems = saved ? JSON.parse(saved) : [];
 
-    const [profile, setProfile] = useState({
+    const [profileFromForm, setProfileFromForm] = useState({
         id: "",
         full_name: "",
         phone: "",
-        address: "",
+        address: profile?.profile?.address || "",
         gender: "",
-        dob: ""
+        dob: "",
     });
-
+    const [paymentMethod, setPaymentMethod] = useState("Cash On Delivery");
     // State lưu lỗi validate
     const [errors, setErrors] = useState({});
 
     function validateForm() {
         let newErrors = {};
 
-        if (!profile.full_name.trim()) {
+        if (!profileFromForm.full_name.trim()) {
             newErrors.full_name = "Full name is required";
         }
-        if (!profile.phone.trim()) {
+        if (!profileFromForm.phone.trim()) {
             newErrors.phone = "Phone number is required";
-        } else if (!/^[0-9]{9,11}$/.test(profile.phone)) {
+        } else if (!/^[0-9]{9,11}$/.test(profileFromForm.phone)) {
             newErrors.phone = "Phone must be 9–11 digits";
         }
-        if (!profile.address.trim()) {
+        if (!profileFromForm.address.trim()) {
             newErrors.address = "Address is required";
         }
-        // if (!profile.gender) {
+        // if (!profileFromForm.gender) {
         //     newErrors.gender = "Gender is required";
         // }
-        // if (!profile.dob) {
+        // if (!profileFromForm.dob) {
         //     newErrors.dob = "Date of birth is required";
         // }
 
@@ -52,40 +54,63 @@ export function OrderConfirm() {
     }
 
     async function handleConfirmBtn() {
-        if (!validateForm()) {
-            return; // dừng nếu form không hợp lệ
+        // Nếu user chưa có profile (profile = null) thì phải validate form nhập liệu
+        if (!profile && !validateForm()) {
+            return; // Nếu form không hợp lệ thì dừng luôn
+        }
+
+        // Nếu giỏ hàng rỗng thì báo lỗi và dừng
+        if (cartItems.length === 0) {
+            toast.error("Cart is empty!");
+            return;
         }
 
         try {
-            const resProfile = await ProfileService.create(profile);
-            const newProfileId = resProfile.data.id;
-            await createOrder(newProfileId);
+            let profileId = 0;
+
+            // Nếu user đã có profile (đăng nhập và có profile trong DB) thì dùng ID đó
+            if (profile) {
+                profileId = profile.profile.id;
+            } else {
+                // Nếu user chưa có profile thì gọi API để tạo mới profile từ form
+                const resProfile = await ProfileService.create(profileFromForm);
+                profileId = resProfile.data.id; // lấy ID profile mới tạo
+            }
+
+            // Gọi API tạo order với profileId và giỏ hàng
+            await createOrder(profileId);
+
+            // Sau khi order thành công thì clear giỏ hàng trong localStorage
             localStorage.removeItem("cart");
+
+            // Hiển thị thông báo thành công, sau khi đóng toast sẽ redirect về trang Home
             toast.success("Order confirmed successfully!", {
                 onClose: () => navigate("/")
             });
         } catch (err) {
-            alert("Something went wrong!");
+            // Nếu có lỗi trong bất kỳ bước nào (tạo profile, tạo order, call API) thì báo lỗi
+            toast.error("Something went wrong!");
             console.log(err);
         }
     }
 
-    async function createOrder(profileId) {
+    async function createOrder(id) {
         const mappedItems = cartItems.map(item => ({
-            product_id: item.id,
+            product_id: String(item.id),
             quantity: item.quantity
         }));
 
         const orderPayload = {
-            profile_id: profileId,
-            items: mappedItems
+            profile_id: `${id}`,
+            shipping_address: `${profileFromForm.address}`,
+            items: mappedItems,
+            payment_method: `${paymentMethod}`
         };
 
         try {
-            const res = await OrderService.create(orderPayload);
-            console.log("Order response:", res.data);
+            await OrderService.create(orderPayload);
         } catch (err) {
-            alert("Order creation failed!");
+            toast.error("Order creation failed!");
             console.log(err);
         }
     }
@@ -93,11 +118,11 @@ export function OrderConfirm() {
     return (
         <section>
             <HomeHeader home={"/"} gallery={"/#gallery"} category={"/#category"} aboutus={"/#footer"} cart={"/cart"}/>
-            <hr />
+            <hr/>
             <h4 className="text-center">
-                <CiShoppingCart size={40} /> Confirm
+                <CiShoppingCart size={40}/> Confirm
             </h4>
-            <hr />
+            <hr/>
 
             <div className="container my-4">
                 <div className="row">
@@ -114,8 +139,10 @@ export function OrderConfirm() {
                                         type="text"
                                         className={`form-control ${errors.full_name ? "is-invalid" : ""}`}
                                         placeholder="Full Name"
+                                        disabled={profile}
+                                        value={profile ? profile.profile.full_name : profileFromForm.full_name}
                                         onChange={(e) =>
-                                            setProfile({ ...profile, full_name: e.target.value })
+                                            setProfileFromForm({...profileFromForm, full_name: e.target.value})
                                         }
                                     />
                                     {errors.full_name && <div className="invalid-feedback">{errors.full_name}</div>}
@@ -127,9 +154,11 @@ export function OrderConfirm() {
                                     <input
                                         type="text"
                                         className={`form-control ${errors.phone ? "is-invalid" : ""}`}
+                                        disabled={profile}
                                         placeholder="Phone number"
+                                        value={profile ? profile.profile.phone : profileFromForm.phone}
                                         onChange={(e) =>
-                                            setProfile({ ...profile, phone: e.target.value })
+                                            setProfileFromForm({...profileFromForm, phone: e.target.value})
                                         }
                                     />
                                     {errors.phone && <div className="invalid-feedback">{errors.phone}</div>}
@@ -142,9 +171,10 @@ export function OrderConfirm() {
                                         type="text"
                                         className={`form-control ${errors.address ? "is-invalid" : ""}`}
                                         placeholder="Address"
-                                        onChange={(e) =>
-                                            setProfile({ ...profile, address: e.target.value })
-                                        }
+                                        value={profileFromForm.address}
+                                        onChange={(e) =>{
+                                            setProfileFromForm({...profileFromForm, address: e.target.value})
+                                        }}
                                     />
                                     {errors.address && <div className="invalid-feedback">{errors.address}</div>}
                                 </div>
@@ -160,10 +190,11 @@ export function OrderConfirm() {
                                             id="genderMale"
                                             name="gender"
                                             value="MALE"
-                                            checked={profile.gender === "MALE"}
+                                            checked={profile ? profile.profile.gender === "MALE" : profileFromForm.gender === "MALE"}
                                             onChange={(e) =>
-                                                setProfile({ ...profile, gender: e.target.value })
+                                                setProfileFromForm({...profileFromForm, gender: e.target.value})
                                             }
+                                            disabled={!!profile}
                                         />
                                         <label className="form-check-label" htmlFor="genderMale">Male</label>
                                     </div>
@@ -175,29 +206,14 @@ export function OrderConfirm() {
                                             id="genderFemale"
                                             name="gender"
                                             value="FEMALE"
-                                            checked={profile.gender === "FEMALE"}
+                                            checked={profile ? profile.profile.gender === "FEMALE" : profileFromForm.gender === "FEMALE"}
                                             onChange={(e) =>
-                                                setProfile({ ...profile, gender: e.target.value })
+                                                setProfileFromForm({...profileFromForm, gender: e.target.value})
                                             }
+                                            disabled={!!profile}
                                         />
                                         <label className="form-check-label" htmlFor="genderFemale">Female</label>
                                     </div>
-
-                                    <div className="form-check form-check-inline">
-                                        <input
-                                            type="radio"
-                                            className="form-check-input"
-                                            id="genderOther"
-                                            name="gender"
-                                            value="OTHER"
-                                            checked={profile.gender === "OTHER"}
-                                            onChange={(e) =>
-                                                setProfile({ ...profile, gender: e.target.value })
-                                            }
-                                        />
-                                        <label className="form-check-label" htmlFor="genderOther">Other</label>
-                                    </div>
-                                    {errors.gender && <div className="text-danger small">{errors.gender}</div>}
                                 </div>
 
                                 {/* Date of birth */}
@@ -205,14 +221,14 @@ export function OrderConfirm() {
                                     <label className="form-label" htmlFor="dob">Date of Birth</label>
                                     <input
                                         type="date"
-                                        className={`form-control ${errors.dob ? "is-invalid" : ""}`}
+                                        className={`form-control`}
                                         id="dob"
-                                        value={profile.dob || ""}
+                                        disabled={profile}
+                                        value={profile ? profile.profile.dob : profileFromForm.dob}
                                         onChange={(e) =>
-                                            setProfile({ ...profile, dob: e.target.value })
+                                            setProfileFromForm({...profileFromForm, dob: e.target.value})
                                         }
                                     />
-                                    {errors.dob && <div className="invalid-feedback">{errors.dob}</div>}
                                 </div>
                             </form>
                         </div>
@@ -222,22 +238,68 @@ export function OrderConfirm() {
                     <div className="col-md-4">
                         <div className="border rounded p-3">
                             <h5>Invoice</h5>
-                            <hr />
-                            <p>Cash on Delivery</p>
-                            <hr />
+                            <hr/>
+                            <h6><strong>Payment Method</strong></h6>
+                            <div className="form-check">
+                                <input
+                                    className="form-check-input"
+                                    type="radio"
+                                    id="paymentCOD"
+                                    name="paymentMethod"
+                                    value="Cash On Delivery"
+                                    checked={paymentMethod === "Cash On Delivery"}
+                                    onChange={(e) => setPaymentMethod(e.target.value)}
+                                />
+                                <label className="form-check-label" htmlFor="paymentTransfer">
+                                    Cash on Delivery
+                                </label>
+                            </div>
+                            <div className="form-check">
+                                <input
+                                    className="form-check-input"
+                                    type="radio"
+                                    id="paymentTransfer"
+                                    name="paymentMethod"
+                                    value="Transfer"
+                                    onChange={(e) => setPaymentMethod(e.target.value)}
+                                />
+                                <label className="form-check-label" htmlFor="paymentTransfer">
+                                    Bank Transfer
+                                </label>
+                            </div>
+                            <hr/>
+                            <h6><strong>Products</strong></h6>
                             <table className="w-100">
                                 <tbody>
                                 {cartItems.map(item => (
                                     <tr key={item.id}>
                                         <td className="text-start">{item.name}</td>
-                                        <td className="text-end">{Number(item.price).toLocaleString()}$</td>
+                                        <td className={"text-center"}>{item.quantity}</td>
+                                        <td className="text-end">{Number(item.price).toLocaleString("en-US", {
+                                            style: "currency",
+                                            currency: "USD"
+                                        })}
+                                        </td>
                                     </tr>
                                 ))}
                                 </tbody>
                             </table>
-                            <hr />
+                            {paymentMethod === "Transfer" && (
+                                <>
+                                    <hr/>
+                                    <div className="text-center">
+                                        <img
+                                            alt="QR"
+                                            src="https://i.postimg.cc/sg3SPv8J/z7059617032690-6320a6f86f57804ff86ec9d6588c72ba.jpg"
+                                            className="img-fluid rounded"
+                                            style={{width: "300px", height: "300px"}}
+                                        />
+                                    </div>
+                                </>
+                            )}
+                            <hr/>
                             <p>
-                                <strong>Payable: {payable.toLocaleString()}$</strong>
+                                <strong>Payable: {Number(payable).toLocaleString('en-US', {style: "currency", currency: "USD"})}</strong>
                             </p>
                             <button
                                 type="button"

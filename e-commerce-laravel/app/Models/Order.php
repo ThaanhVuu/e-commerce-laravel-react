@@ -16,12 +16,17 @@ class Order extends Model
     protected $keyType = 'string';
     public $incrementing = false;
 
+    protected $casts = [
+        'profile_id' => 'string',
+        'user_id' => 'string'
+    ];
     protected $fillable = [
         'user_id',
         'total_price',
         'status',
-        'id',
         'profile_id',
+        'shipping_address',
+        'payment_method'
     ];
 
     public function profile(): BelongsTo

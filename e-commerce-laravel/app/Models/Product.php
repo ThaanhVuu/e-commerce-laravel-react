@@ -22,7 +22,7 @@ class Product extends Model
         'price',
         'stock',
         'status',
-        'id',
+        'img_url'
     ];
 
     // 1 Product thuộc 1 Category

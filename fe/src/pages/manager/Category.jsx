@@ -8,6 +8,7 @@ import {Modal} from "bootstrap";
 import {useState} from "react";
 import {ModalCustom} from "../../components/ModalCustom";
 import {toast} from "react-toastify";
+import Swal from "sweetalert2";
 
 export function Category() {
     const [editData, setEditData] = useState(null);
@@ -35,15 +36,15 @@ export function Category() {
         try {
             if (editData) {
                 let res = await CategoryService.update(editData.id, formData);
-                console.log(formData);
                 toast.success(res.data.message);
             } else {
                 let res = await CategoryService.create(formData);
-                toast.error(res.message);
+                toast.success(res.data.message);
             }
             setEditData(null);
             setFilters(prev => ({...prev})); // refresh list
         } catch (err) {
+            toast.error(err.data.response.message)
             console.error("Save error:", err);
         }
     }
@@ -61,9 +62,18 @@ export function Category() {
             return;
         }
 
-        if (!window.confirm(`Are you sure you want to delete ${selectedIds.length} categories?`)) {
-            return;
-        }
+        const result = await Swal.fire({
+            title: "Are you sure?",
+            text: `You are about to delete ${selectedIds.length} categories`,
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#3085d6",
+            confirmButtonText: "Yes, delete it!",
+            cancelButtonText: "Cancel"
+        });
+
+        if (!result) return;
 
         try {
             // chạy song song tất cả API delete
@@ -80,7 +90,7 @@ export function Category() {
             toast.success("Deleted successfully!");
         } catch (err) {
             console.error("Delete error:", err);
-            toast.error("Delete failed!");
+            toast.error(err.data.response.message);
         }
     }
 
@@ -93,7 +103,7 @@ export function Category() {
 
     return (
         <div className={"d-flex flex-column p-3"}>
-            <h4 className="fw-bold">Product List</h4>
+            <h4 className="fw-bold">Category List</h4>
             <div className="border p-3 bg-light rounded-2 d-flex flex-column gap-2">
                 <ModalCustom
                     id={"category"}

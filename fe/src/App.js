@@ -19,9 +19,11 @@ import {ProductHome} from "./pages/home/ProductHome";
 import {Cart} from "./pages/home/Cart";
 import {OrderConfirm} from "./pages/home/OrderConfirm";
 import {CreateProfile} from "./pages/CreateProfile";
-import {HomeSetting} from "./pages/manager/HomeSetting";
 import {ToastContainer} from "react-toastify";
 import {ProfileUser} from "./pages/ProfileUser";
+import {Banner} from "./pages/manager/Banner";
+import {Gallery} from "./pages/manager/Gallery";
+import {Collection} from "./pages/manager/Collection";
 
 function App() {
     return (
@@ -56,7 +58,9 @@ function App() {
                         <Route path={"profile"} element={<Profile/>}/>
                         <Route path={"product"} element={<Product/>}/>
                         <Route path={"order"} element={<Order/>}/>
-                        <Route path={"home-setting"} element={<HomeSetting/>}/>
+                        <Route path="banner" element={<Banner/>} />
+                        <Route path="gallery" element={<Gallery/>} />
+                        <Route path="collection" element={<Collection/>} />
                     </Route>
                 </Route>
 
