@@ -91,11 +91,20 @@ export function ProfileUser() {
 
                                             <hr className={"m-0"}/>
                                             <table className={"table table-borderless m-0"}>
+                                                <thead>
+                                                <tr>
+                                                    <th>Product</th>
+                                                    <th>Category</th>
+                                                    <th>Quantity</th>
+                                                    <th>Price</th>
+                                                </tr>
+                                                </thead>
                                                 <tbody>
                                                 {order.order_details.map(detail => (
                                                     <tr key={detail.id}>
                                                         <td>{detail.product.name}</td>
                                                         <td>{detail.product.category.name}</td>
+                                                        <td className={"text-center"}>{detail.quantity}</td>
                                                         <td>{Number(detail.product.price).toLocaleString('en-US', {
                                                             style: "currency",
                                                             currency: "USD"

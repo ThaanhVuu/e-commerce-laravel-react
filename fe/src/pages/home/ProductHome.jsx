@@ -109,19 +109,22 @@ export function ProductHome() {
                     <span>Sort: </span>
                     <select
                         className="form-select w-25"
-                        value={`${filters.sort_by}_${filters.sort_order}`}
                         onChange={(e) => {
-                            const [sort_by, sort_order] = e.target.value.split("_");
-                            setFilters({...filters, sort_by, sort_order});
+                            const opt = e.target.selectedOptions[0];
+                            setFilters({
+                                ...filters,
+                                sort_by: opt.dataset.sortby,
+                                sort_order: opt.dataset.sortorder
+                            });
                         }}
                     >
-                        <option value="">None</option>
-                        <option value="price_asc">Price ↑</option>
-                        <option value="price_desc">Price ↓</option>
-                        <option value="name_asc">Name ↑</option>
-                        <option value="name_desc">Name ↓</option>
-                        <option value="created_at_desc">Newest</option>
-                        <option value="created_at_asc">Oldest</option>
+                        <option data-sortby="" data-sortorder="">None</option>
+                        <option data-sortby="price" data-sortorder="asc">Price ↑</option>
+                        <option data-sortby="price" data-sortorder="desc">Price ↓</option>
+                        <option data-sortby="name" data-sortorder="asc">Name ↑</option>
+                        <option data-sortby="name" data-sortorder="desc">Name ↓</option>
+                        <option data-sortby="created_at" data-sortorder="desc">Newest</option>
+                        <option data-sortby="created_at" data-sortorder="asc">Oldest</option>
                     </select>
 
                     <span>Filter:</span>
